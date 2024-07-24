@@ -1,14 +1,20 @@
 {
-  "name": "back-end",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "cat-store-api",
+  "version": "0.0.0",
+  "description": "API for the Cat Store website",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
+    "start:dev": "nodemon ./",
+    "start": "node ./",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "POO Fighters",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "body-parser": "^1.20.2",
+    "nodemon": "^3.1.4",
+    "sqlite3": "^5.1.7"
   }
 }
