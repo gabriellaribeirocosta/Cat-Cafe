@@ -1,6 +1,6 @@
-import { Cat } from '../models/CatModel';
+import Cat from '../models/CatModel.js';
 
-module.exports = {
+export const catController = {
     async list(req, res) {
         try {
             const cats = await Cat.findAll();
