@@ -1,6 +1,6 @@
-import { Product } from '../models/ProductModel';
+import Product from '../models/ProductModel.js';
 
-module.exports = {
+export const productController = {
     async list(req, res) {
         try {
             const products = await Product.findAll();
@@ -12,7 +12,7 @@ module.exports = {
     async add(req, res) {
         try {
             const products = await Product.create(req.body);
-            res.status(200).json(products);
+            res.status(201).json(products);
         } catch (error) {
             res.status(400).send(error);
         }
@@ -51,4 +51,4 @@ module.exports = {
             res.status(400).send(error);
         }
     }
-}
+};

@@ -1,6 +1,6 @@
-import { User } from '../models/UserModel';
+import User from '../models/UserModel.js';
 
-module.exports = {
+export const userController = {
     async list(req, res) {
         try {
             const users = await User.findAll();

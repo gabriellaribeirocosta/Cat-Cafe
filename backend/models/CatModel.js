@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../database/db-config';
+import sequelize from '../database/db-config.js';
 
 const CatModel = sequelize.define('Cat', {
     id: {
@@ -16,9 +16,9 @@ const CatModel = sequelize.define('Cat', {
         allowNull: false
     },
     race: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
     }
 });
 
-module.exports = CatModel;
+export default CatModel;
