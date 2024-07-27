@@ -1,14 +1,6 @@
 import User from '../models/UserModel.js';
 
 export const userController = {
-    async list(req, res) {
-        try {
-            const users = await User.findAll();
-            res.status(200).json(users);
-        } catch (error) {
-            res.status(400).send(error);
-        }
-    },
     async add(req, res) {
         try {
             const user = await User.create(req.body);
