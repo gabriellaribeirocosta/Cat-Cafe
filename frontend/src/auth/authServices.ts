@@ -76,3 +76,15 @@ export async function facebookAuth(): Promise<User | string> {
     return `Unespected Error`
   }
 }
+
+export function currentUser():User | string | null {
+  try {
+    const current: User | null = auth.currentUser
+    return current
+  } catch (error) {
+    if (error instanceof FirebaseError) {
+      return error.code
+    }
+    return `Unespected Error`
+  }
+}
