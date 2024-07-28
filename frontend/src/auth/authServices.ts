@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  FacebookAuthProvider,
 } from 'firebase/auth'
 import { auth } from '../services/firebaseConf'
 import { User, UserCredential } from 'firebase/auth'
@@ -50,6 +51,20 @@ export async function signIn(
 
 export async function googleAuth(): Promise<User | string> {
   const provider = new GoogleAuthProvider()
+  try {
+    const response: UserCredential = await signInWithPopup(auth, provider)
+    const user: User = response.user
+    return user
+  } catch (error) {
+    if (error instanceof FirebaseError) {
+      return error.code
+    }
+    return `Unespected Error`
+  }
+}
+
+export async function facebookAuth(): Promise<User | string> {
+  const provider = new FacebookAuthProvider()
   try {
     const response: UserCredential = await signInWithPopup(auth, provider)
     const user: User = response.user
