@@ -1,5 +1,5 @@
 import { signOut } from 'firebase/auth'
-import { auth } from '../services/firebaseConf'
+import { auth } from '../conf/firebaseConf'
 import { FirebaseError } from 'firebase/app'
 
 export async function logout(): Promise<void | string> {

@@ -1,4 +1,4 @@
-import { auth } from '../services/firebaseConf'
+import { auth } from '../conf/firebaseConf'
 import { User, Auth } from 'firebase/auth'
 import { FirebaseError } from 'firebase/app'
 

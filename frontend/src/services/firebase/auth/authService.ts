@@ -1,10 +1,10 @@
 import { User } from 'firebase/auth'
-import { signUp } from './signUp'
-import { signIn } from './signIn'
-import { googleAuth } from './googleAuth'
-import { facebookAuth } from './facebookAuth'
-import { currentUser } from './currentUser'
-import { logout } from './logout'
+import { signUp } from './authService/signUp'
+import { signIn } from './authService/signIn'
+import { googleAuth } from './authService/googleAuth'
+import { facebookAuth } from './authService/facebookAuth'
+import { currentUser } from './authService/currentUser'
+import { logout } from './authService/logout'
 
 interface AuthService {
   signUp(email: string, password: string): Promise<User | string>

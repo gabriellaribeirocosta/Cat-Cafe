@@ -2,13 +2,13 @@ import {
   User,
   UserCredential,
   signInWithPopup,
-  FacebookAuthProvider,
+  GoogleAuthProvider,
 } from 'firebase/auth'
-import { auth } from '../services/firebaseConf'
+import { auth } from '../conf/firebaseConf'
 import { FirebaseError } from 'firebase/app'
 
-export async function facebookAuth(): Promise<User | string> {
-  const provider = new FacebookAuthProvider()
+export async function googleAuth(): Promise<User | string> {
+  const provider = new GoogleAuthProvider()
   try {
     const { user }: UserCredential = await signInWithPopup(auth, provider)
     return user

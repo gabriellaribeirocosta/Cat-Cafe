@@ -3,7 +3,7 @@ import {
   UserCredential,
   createUserWithEmailAndPassword,
 } from 'firebase/auth'
-import { auth } from '../services/firebaseConf'
+import { auth } from '../conf/firebaseConf'
 import { FirebaseError } from 'firebase/app'
 
 export async function signUp(
