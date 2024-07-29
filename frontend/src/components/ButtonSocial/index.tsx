@@ -1,4 +1,4 @@
-import './style.css'
+import './style.module.css'
 import { ReactNode } from 'react'
 
 interface ButtonProps {
