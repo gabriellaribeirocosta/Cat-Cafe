@@ -1,12 +1,12 @@
 import styles from './style.module.css'
 
-interface TextProps {
+interface SectionHeaderProps {
     title: string;
     text: string;
     className?: string;
 }
 
-const Text: React.FC<TextProps> = ({ title, text, className}) => {
+const SectionHeader: React.FC<SectionHeaderProps> = ({ title, text, className}) => {
   return (
     <div>
         <h1 className={`${styles.title} ${className}`}>{title}</h1>
@@ -15,4 +15,4 @@ const Text: React.FC<TextProps> = ({ title, text, className}) => {
   );
 };
 
-export default Text;
+export default SectionHeader;
