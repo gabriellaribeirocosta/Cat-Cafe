@@ -1,4 +1,4 @@
-import './style.css';
+import './style.module.css';
 import React, {ChangeEvent, useState} from 'react';
 
 interface InputProps {
