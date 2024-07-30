@@ -1,18 +1,18 @@
-import './style.module.css';
+import styles from './style.module.css';
 import { ReactNode } from 'react';
-
+ 
 interface ButtonProps {
   children: ReactNode;
   onClick: () => void;
-  className?: string;
+  buttonClassName?: string;
 }
-
-const Button = ({ children, onClick }: ButtonProps) => {
+ 
+const Button = ({ children, onClick, buttonClassName}: ButtonProps) => {
   return (
-    <button className="button" onClick={onClick}>
+    <button onClick={onClick} className={`${styles.button} ${buttonClassName}`}>
       {children}
     </button>
-  );
-};
-
+  )
+}
+ 
 export default Button;
