@@ -3,10 +3,7 @@ import arrowIcon from '../../../public/arrowIcon.png';
 import Input from '../Input/index.tsx';
 import searchIcon from '../../../public/searchIcon.png';
 
-interface HeaderMobileProps {
-}
-
-const HeaderMobile: React.FC<HeaderMobileProps> = () => {
+const HeaderSearch: React.FC = () => {
   return (
     <div className={styles.container}>
         <img src={arrowIcon} alt="Arrow Icon" className={styles.arrowIcon}/>
@@ -20,4 +17,4 @@ const HeaderMobile: React.FC<HeaderMobileProps> = () => {
   );
 };
 
-export default HeaderMobile;
+export default HeaderSearch;
