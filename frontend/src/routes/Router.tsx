@@ -3,6 +3,8 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import PrivateRoutes from './PrivateRoutes'
 import PublicRoutes from './PublicRoutes'
 
+import StandardLayout from '../layouts/StandardLayout'
+
 const Router = () => {
   return (
     <Routes>
@@ -10,9 +12,11 @@ const Router = () => {
         <Route path="/login" element={'insert-page-login'} />
       </Route>
       <Route element={<PrivateRoutes />}>
-        <Route path="/" element={'insert-page-products'} />
-        <Route path="/products" element={'insert-page-products'} />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/" element={<StandardLayout />}>
+          <Route path="/" element={'insert-page-products'} />
+          <Route path="/products" element={'insert-page-products'} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
       </Route>
     </Routes>
   )
