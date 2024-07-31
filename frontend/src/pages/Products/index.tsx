@@ -1,9 +1,19 @@
+import { useEffect, useState } from 'react'
+
+import { ProductProps } from '../../interfaces/Product'
+
 import Button from '../../components/Button'
 import DetailsTable from '../../components/DetailsTable'
 
 import style from './style.module.css'
 
 const Products = () => {
+  const [products, setProducts] = useState<ProductProps[]>([])
+
+  useEffect(() => {
+    setProducts([])
+  }, [])
+
   return (
     <section className={style.Products}>
       <header className={style.ListHeader}>
@@ -14,7 +24,7 @@ const Products = () => {
       </header>
 
       <section className={style.ListContent}>
-        <DetailsTable />
+        <DetailsTable products={products} />
       </section>
     </section>
   )

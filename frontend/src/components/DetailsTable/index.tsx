@@ -2,9 +2,11 @@ import { Product, ProductProps } from '../../interfaces/Product'
 
 import style from './style.module.css'
 
-const DetailsTable = () => {
-  const products: ProductProps[] = []
+interface DetailsTableProps {
+  products: ProductProps[]
+}
 
+const DetailsTable = ({ products }: DetailsTableProps) => {
   return (
     <table className={style.DetailsTable}>
       <thead>
