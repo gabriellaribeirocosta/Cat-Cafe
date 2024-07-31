@@ -1,0 +1,40 @@
+.Products {
+  & h1 {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.6;
+    color: var(--brand-color-2);
+  }
+}
+
+.ListHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  gap: 10px;
+
+  & .button_container {
+    width: 200px;
+  }
+}
+
+.ListContent {
+  overflow-x: auto;
+}
+
+@media (max-width: 375px) {
+  .Products {
+    & h1 {
+      font-size: 20px;
+    }
+
+    & .ListHeader {
+      .button_container {
+        width: 100%;
+      }
+    }
+  }
+}
