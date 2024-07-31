@@ -10,7 +10,7 @@ const index:React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<PublicRoutes/>}>
-          <Route path="/login" element={"insert-page-products"}/>
+          <Route path="/login" element={"insert-page-login"}/>
         </Route>
         <Route element={<PrivateRoutes/>}>
           <Route path="/" element={"insert-page-products"}/>
