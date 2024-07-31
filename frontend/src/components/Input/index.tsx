@@ -6,15 +6,15 @@ interface InputProps {
   placeholder?: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  className?: string;
+  inputClass?: string;
 }
 
 const Input: React.FC<InputProps> = ({ 
   type = 'text', 
   placeholder = '', 
   value, 
-  onChange, 
-  className = '', 
+  onChange,
+  inputClass,
   ...props
 }) => {
 
@@ -38,7 +38,7 @@ const Input: React.FC<InputProps> = ({
       onChange={onChange}
       onBlur={handleBlur}
       onFocus={handleFocus}
-      className={`input ${className} ${isBlurred ? 'blurred' : ''}`}
+      className={`input ${inputClass} ${isBlurred ? 'blurred' : ''}`}
       {...props}
     />
   );

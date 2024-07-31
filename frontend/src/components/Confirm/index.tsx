@@ -1,6 +1,6 @@
 import styles from './style.module.css';
 import attentionIcon from '../../../public/attentionIcon.png';
-import SectionHeader from '../SectionHeader/SectionHeader';
+import SectionHeader from '../SectionHeader/index.tsx';
 import Button from '../Button/index.tsx';
 
 const Confirm = () => {
