@@ -3,40 +3,7 @@ import { Product, ProductProps } from '../../interfaces/Product'
 import style from './style.module.css'
 
 const DetailsTable = () => {
-  const products: ProductProps[] = [
-    {
-      id: 1,
-      name: 'Product 1',
-      description: 'This is a description of a sample project lorem ipsum',
-      price: 1.0,
-      category: 'Dessert',
-      createdAt: '01/01/2024',
-    },
-    {
-      id: 12,
-      name: 'Product 2',
-      description: 'This is a description of a sample project lorem ipsum',
-      price: 12.0,
-      category: 'Dessert',
-      createdAt: '01/01/2024',
-    },
-    {
-      id: 13,
-      name: 'Product 3',
-      description: 'This is a description of a sample project lorem ipsum',
-      price: 1200.0,
-      category: 'Dessert',
-      createdAt: '01/01/2024',
-    },
-    {
-      id: 14,
-      name: 'Product 4',
-      description: 'This is a description of a sample project lorem ipsum',
-      price: 120.0,
-      category: 'Dessert',
-      createdAt: '01/01/2024',
-    },
-  ]
+  const products: ProductProps[] = []
 
   return (
     <table className={style.DetailsTable}>
