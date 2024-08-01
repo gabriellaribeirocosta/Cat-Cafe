@@ -1,2 +1,9 @@
 .MainContent {
+  padding: 10px 30px;
+}
+
+@media screen and (max-width: 768px) {
+  .MainContent {
+    padding: 0px 20px;
+  }
 }
