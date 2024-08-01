@@ -5,6 +5,8 @@ import { googleAuth } from './authService/googleAuth'
 import { facebookAuth } from './authService/facebookAuth'
 import { currentUser } from './authService/currentUser'
 import { logout } from './authService/logout'
+import { userAuthState } from './authService/userAuthState'
+import { Unsubscribe } from 'firebase/auth'
 
 interface AuthService {
   signUp(email: string, password: string): Promise<User | string>
@@ -13,6 +15,7 @@ interface AuthService {
   facebookAuth(): Promise<User | string>
   currentUser(): User | null | string
   logout(): Promise<void | string>
+  userAuthState(callback: (user: User | null) => void): Unsubscribe
 }
 
 export const authService: AuthService = {
@@ -22,4 +25,5 @@ export const authService: AuthService = {
   facebookAuth,
   currentUser,
   logout,
+  userAuthState,
 }

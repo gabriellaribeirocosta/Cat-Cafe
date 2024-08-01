@@ -1,15 +1,15 @@
 import { Outlet, Navigate } from 'react-router-dom'
-import { AuthContext } from '../contexts/AuthContext';
-import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext'
+import { useContext } from 'react'
 
 const PrivateRoute: React.FC = () => {
-  const {user, loading} = useContext(AuthContext)
+  const { user, loading } = useContext(AuthContext)
 
   if (loading) {
-    return <></>;
+    return <></>
   }
 
-  return user ? <Outlet /> : <Navigate to="/login" />;
-};
+  return user ? <Outlet /> : <Navigate to="/login" />
+}
 
 export default PrivateRoute
