@@ -1,6 +1,12 @@
-import { createContext, ReactNode, SetStateAction, useEffect, useState } from "react";
-import { onAuthStateChanged, User } from "firebase/auth";
-import { auth } from "../services/firebase/auth/conf/firebaseConf";
+import {
+  createContext,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react'
+import { User } from 'firebase/auth'
+import { authService } from '../services/firebase/auth/authService'
 
 interface AuthContextType {
   user: User | null
@@ -13,24 +19,31 @@ interface AuthContextProviderProps {
   children: ReactNode
 }
 
-export const AuthContext = createContext<AuthContextType>({user: null, setUser: () =>{}, loading: true, setLoading: () =>{}})
+export const AuthContext = createContext<AuthContextType>({
+  user: null,
+  setUser: () => {},
+  loading: true,
+  setLoading: () => {},
+})
 
-export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }: AuthContextProviderProps) => {
+export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
+  children,
+}: AuthContextProviderProps) => {
   const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true)
 
   const contextValues = {
     user,
     setUser,
     loading,
-    setLoading
+    setLoading,
   }
 
-  useEffect(() =>{
-    const userState = onAuthStateChanged(auth, ((user) => {
+  useEffect(() => {
+    const userState = authService.userAuthState((user) => {
       setUser(user)
       setLoading(false)
-    }))
+    })
 
     return () => userState()
   }, [])
