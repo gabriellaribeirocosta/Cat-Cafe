@@ -4,6 +4,8 @@ import PrivateRoutes from './PrivateRoutes'
 import PublicRoutes from './PublicRoutes'
 
 import StandardLayout from '../layouts/StandardLayout'
+import Products from '../pages/Products'
+import Dashboard from '../pages/Dashboard'
 
 const Router = () => {
   return (
@@ -13,8 +15,8 @@ const Router = () => {
       </Route>
       <Route element={<PrivateRoutes />}>
         <Route path="/" element={<StandardLayout />}>
-          <Route path="/" element={'insert-page-products'} />
-          <Route path="/products" element={'insert-page-products'} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/products" element={<Products />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Route>
