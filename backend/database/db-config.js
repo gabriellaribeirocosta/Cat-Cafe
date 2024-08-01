@@ -1,7 +1,7 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize'
 const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'db-view.sqlite'
-});
+  dialect: 'sqlite',
+  storage: 'db-view.sqlite',
+})
 
-export default sequelize;
+export default sequelize

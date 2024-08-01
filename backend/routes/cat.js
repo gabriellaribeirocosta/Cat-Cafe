@@ -1,14 +1,14 @@
-import express from "express";
-import { catController } from "../controllers/catController.js";
+import express from 'express'
+import { catController } from '../controllers/catController.js'
 
-const router = express.Router();
+const router = express.Router()
 
-router.get("/", catController.list);
+router.get('/', catController.list)
 
-router.post("/", catController.add);
+router.post('/', catController.add)
 
-router.put("/:id", catController.update);
+router.put('/:id', catController.update)
 
-router.delete("/:id", catController.delete);
+router.delete('/:id', catController.delete)
 
-export default router;
+export default router
