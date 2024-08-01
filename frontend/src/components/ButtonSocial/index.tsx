@@ -1,5 +1,5 @@
-import './style.module.css'
 import { ReactNode } from 'react'
+import styles from './style.module.css'
 
 interface ButtonProps {
   children: ReactNode
@@ -8,13 +8,13 @@ interface ButtonProps {
   logo?: string
 }
 
-const Button = ({ children, onClick, className, logo }: ButtonProps) => {
+const ButtonSocial = ({ children, onClick, className, logo }: ButtonProps) => {
   return (
-    <button className={`button ${className}`} onClick={onClick}>
-      <div>{logo && <img src={logo} alt="Logo" className="button_logo" />}</div>
-      <div>{children}</div>
+    <button className={`${styles.button} ${className}`} onClick={onClick}>
+      {logo && <img src={logo} alt="Logo" className={styles.button_logo} />}
+      <span>{children}</span>
     </button>
   )
 }
 
-export default Button
+export default ButtonSocial
