@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
+import SignIn from '../pages/SignIn'
 
 import PrivateRoutes from './PrivateRoutes'
 import PublicRoutes from './PublicRoutes'
@@ -9,7 +10,7 @@ const Router = () => {
   return (
     <Routes>
       <Route element={<PublicRoutes />}>
-        <Route path="/login" element={'insert-page-login'} />
+        <Route path="/login" element={<SignIn/>} />
       </Route>
       <Route element={<PrivateRoutes />}>
         <Route path="/" element={<StandardLayout />}>

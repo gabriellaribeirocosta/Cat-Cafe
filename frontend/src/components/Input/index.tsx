@@ -7,6 +7,7 @@ interface InputProps {
   value: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   inputClass?: string
+  className?: string
 }
 
 const Input: React.FC<InputProps> = ({
