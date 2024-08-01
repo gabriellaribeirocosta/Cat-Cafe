@@ -16,4 +16,5 @@
 :root {
   --color-text: var(--black);
   --bgcolor-page: #f8f8f8;
+  --bgcolor-lightgreen: #f1f5f0;
 }
