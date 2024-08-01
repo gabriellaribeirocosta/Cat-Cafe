@@ -1,8 +1,8 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import productRouter from './routes/product.js'
-import catRouter from './routes/cat.js'
-import userRouter from './routes/user.js'
+import productRouter from './src/routes/product.js'
+import catRouter from './src/routes/cat.js'
+import userRouter from './src/routes/user.js'
 
 const app = express()
 
