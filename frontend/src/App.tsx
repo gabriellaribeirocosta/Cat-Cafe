@@ -1,12 +1,16 @@
-import React from "react";
-import MainPage from "./pages/mainPage";
+import { BrowserRouter } from 'react-router-dom'
+import { AuthContextProvider } from './contexts/AuthContext'
 
-const App: React.FC = () => {
+import Router from './routes/Router'
+
+function App() {
   return (
-    <div>
-      <MainPage />
-    </div>
-  );
-};
+    <AuthContextProvider>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </AuthContextProvider>
+  )
+}
 
 export default App;

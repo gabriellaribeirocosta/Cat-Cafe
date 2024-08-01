@@ -6,7 +6,7 @@ interface InputProps {
   placeholder?: string
   value: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
-  className?: string
+  inputClass?: string
 }
 
 const Input: React.FC<InputProps> = ({

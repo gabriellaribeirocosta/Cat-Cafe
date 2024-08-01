@@ -4,7 +4,6 @@ import styles from './style.module.css'
 interface ButtonProps {
   children: ReactNode
   onClick: () => void
-  className?: string
   logo?: string
 }
 
