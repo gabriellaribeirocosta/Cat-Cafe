@@ -5,6 +5,7 @@ interface ButtonProps {
   children: ReactNode
   onClick: () => void
   logo?: string
+  className?: string
 }
 
 const ButtonSocial = ({ children, onClick, className, logo }: ButtonProps) => {

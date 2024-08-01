@@ -6,6 +6,7 @@ interface InputProps {
   placeholder?: string
   value: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  inputClass?: string
   className?: string
 }
 
