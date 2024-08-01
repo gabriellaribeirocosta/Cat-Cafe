@@ -1,39 +1,37 @@
-import { useState, ChangeEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Logo from '../../components/Logo'
-import Input from '../../components/Input'
-import Button from '../../components/Button'
-import ButtonSocial from '../../components/ButtonSocial'
-import SectionHeader from '../../components/SectionHeader'
-import logoGoogle from '../../../public/logoGoogle.png'
-import logoFacebook from '../../../public/logoFacebook.png'
-import styles from './style.module.css'
-import '../../normalize.css'
-import { authService } from '../../services/firebase/auth/authService'
-
+import { useState, ChangeEvent } from 'react';
+import Logo from '../../components/Logo';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import ButtonSocial from '../../components/ButtonSocial';
+import SectionHeader from '../../components/SectionHeader';
+import logoGoogle from '../../../public/logoGoogle.png';
+import logoFacebook from '../../../public/logoFacebook.png';
+import styles from './style.module.css';
+import '../../normalize.css';
+import { authService } from '../../services/firebase/auth/authService';
 
 const SignIn = () => {
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-  const navigate = useNavigate();
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value)
-  }
+    setEmail(e.target.value);
+  };
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value)
-  }
+    setPassword(e.target.value);
+  };
 
   const handleSignInClick = async () => {
     if (!email || !password) return;
-      const response = await authService.signIn(email, password);
-      if (typeof response === 'string') {
-        console.log(response)
-      }
-    };
+    const response = await authService.signIn(email, password);
+    if (typeof response === 'object' && response.uid) {
+    } else if (typeof response === 'string') {
+      console.error(response);
+    }
+  };
 
-  const handleSignUp = async () => {
+  const handleSignUpClick = async () => {
     if (!email || !password) return;
     const response = await authService.signUp(email, password);
     if (typeof response === 'object' && response.uid) {
@@ -41,28 +39,27 @@ const SignIn = () => {
       setPassword('');
       console.log(response.uid);
     } else if (typeof response === 'string') {
-      console.log(response);
+      console.error(response);
     }
   };
 
-  const handleLoginClick = async () => {
+  const handleGoogleLoginClick = async () => {
     const response = await authService.googleAuth();
     if (typeof response === 'object' && response.uid) {
-      navigate('/');
+      console.log(response.uid);
     } else if (typeof response === 'string') {
       console.error(response);
-  }
+    }
   };
 
   const handleFacebookLoginClick = async () => {
     const response = await authService.facebookAuth();
     if (typeof response === 'object' && response.uid) {
-      navigate('/');
+      console.log(response.uid);
     } else if (typeof response === 'string') {
       console.error(response);
     }
   };
-
 
   return (
     <div className={styles.container}>
@@ -95,7 +92,7 @@ const SignIn = () => {
           <Button onClick={handleSignInClick} className={styles.SignInButton}>
             SIGN IN
           </Button>
-          <Button onClick={handleSignUp} className={styles.SignUpButton}>
+          <Button onClick={handleSignUpClick} className={styles.SignUpButton}>
             SIGN UP
           </Button>
           <div className={styles.division}>
@@ -106,7 +103,7 @@ const SignIn = () => {
           <div className={styles.button_container}>
             <ButtonSocial
               className={styles.googleButton}
-              onClick={handleLoginClick}
+              onClick={handleGoogleLoginClick}
               logo={logoGoogle}
             >
               Google
@@ -122,7 +119,7 @@ const SignIn = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;
