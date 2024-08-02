@@ -80,7 +80,7 @@ const Sidebar = () => {
         </div>
         <div className={style.main_container}>
           <section className={style.logo_content}>
-            <Logo text="CRUD OPERATIONS" />
+            <Logo />
           </section>
           <section className={style.profile_content}>
             <div className={style.Profile}>

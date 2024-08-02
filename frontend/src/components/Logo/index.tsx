@@ -1,17 +1,7 @@
-import styles from './style.module.css'
+import style from './style.module.css'
 
-interface LogoProps {
-  text: string;
-  className?: string;
+const Logo = () => {
+  return <img src="/img-logo.svg" alt="Logo Cat Cafe" className={style.Logo} />
 }
 
-const Logo: React.FC<LogoProps> = ({ text, className }) => {
-  return (
-    <div className={`${styles.logo} ${className}`}>
-    <div className={styles.vertical_bar}></div>
-    <h1 className={styles.text}>{text}</h1>
-    </div>
-  );
-};
-
-export default Logo;
+export default Logo

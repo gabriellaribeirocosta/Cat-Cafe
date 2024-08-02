@@ -69,7 +69,9 @@ const SignIn = () => {
   return (
     <div className={styles.container}>
       <section className={styles.box}>
-        <Logo text="CAT CAFE" className={styles.logo} />
+        <section className={styles.logo_content}>
+          <Logo />
+        </section>
         <SectionHeader
           title="SIGN IN"
           text="Enter your credentials to access your account"

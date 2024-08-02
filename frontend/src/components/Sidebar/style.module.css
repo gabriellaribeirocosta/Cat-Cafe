@@ -42,7 +42,8 @@
       position: absolute;
       top: 0;
       left: 0;
-      padding: 18px;
+      margin: 18px;
+      width: 120px;
     }
 
     & .profile_content {
