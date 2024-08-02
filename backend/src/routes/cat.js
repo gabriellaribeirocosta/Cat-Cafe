@@ -1,14 +1,19 @@
 import express from 'express'
 import { catController } from '../controllers/catController.js'
+import {
+  validateAddCat,
+  validateUpdateCat,
+  validateDeleteCat,
+} from '../middlewares/catMiddleware.js'
 
 const router = express.Router()
 
 router.get('/', catController.list)
 
-router.post('/', catController.add)
+router.post('/', validateAddCat, catController.add)
 
-router.put('/:id', catController.update)
+router.put('/:id', validateUpdateCat, catController.update)
 
-router.delete('/:id', catController.delete)
+router.delete('/:id', validateDeleteCat, catController.delete)
 
 export default router
