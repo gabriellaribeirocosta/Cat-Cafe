@@ -90,12 +90,19 @@
     font-size: 27px;
     line-height: 1;
     letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   & .fullname {
     font-weight: 700;
     font-size: 1rem;
     line-height: 1.3;
+    text-transform: capitalize;
+    text-align: center;
+    inline-size: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
