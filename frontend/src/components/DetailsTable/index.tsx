@@ -3,7 +3,7 @@ import { Product, ProductProps } from '../../interfaces/Product'
 import style from './style.module.css'
 
 interface DetailsTableProps {
-  products: ProductProps[]
+  products: ProductProps[] | null
 }
 
 const DetailsTable = ({ products }: DetailsTableProps) => {
