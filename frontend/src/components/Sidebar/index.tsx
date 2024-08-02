@@ -1,15 +1,60 @@
-import { useRef } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
+
+import { AuthContext } from '../../contexts/AuthContext'
+
+import { authService } from '../../services/firebase/auth/authService'
 
 import style from './style.module.css'
 
 import Logo from '../Logo'
 
+type UserInfoType = {
+  email: string | null | undefined
+  displayName: string | null | undefined
+  initials: string | null
+}
+
 const Sidebar = () => {
+  const { user, loading } = useContext(AuthContext)
+
+  const [userInfo, setUserInfo] = useState<UserInfoType>({
+    email: '',
+    displayName: '',
+    initials: '',
+  })
+
   const sidebarRef = useRef<HTMLElement | null>(null)
 
   const handleCloseSidebar = () => {
     sidebarRef.current?.setAttribute('data-is-mobile-menu-active', 'false')
   }
+
+  const handleLogout = async () => {
+    const response = await authService.logout()
+
+    if (!response) {
+      console.log(
+        'Log out request to Firebase Auth has succeeded. Redirecting user to login page...',
+      )
+    } else {
+      console.log(
+        'Response is undefined, log out request to Firebase Auth might have failed.',
+      )
+    }
+  }
+
+  useEffect(() => {
+    console.log('Component Sidebar was mounted')
+    if (!loading) {
+      console.log('Loading from Auth Context has finished')
+
+      setUserInfo({
+        email: user?.email,
+        displayName: user?.displayName || user?.email?.split('@')[0],
+        initials: user?.email ? user.email.slice(0, 2) : 'XY',
+      })
+    }
+  }, [loading, user])
 
   return (
     <aside
@@ -37,8 +82,8 @@ const Sidebar = () => {
           </section>
           <section className={style.profile_content}>
             <div className={style.Profile}>
-              <div className={style.initials}>BB</div>
-              <div className={style.fullname}>Bilbo Baggins</div>
+              <div className={style.initials}>{userInfo.initials}</div>
+              <div className={style.fullname}>{userInfo.displayName}</div>
             </div>
           </section>
           <section className={style.menu_links_content}>
@@ -89,7 +134,7 @@ const Sidebar = () => {
         <div className={style.footer_container}>
           <nav className={style.logout_wrapper}>
             <ul className={style.logout_links_list}>
-              <li className={style.logout_links_item}>
+              <li className={style.logout_links_item} onClick={handleLogout}>
                 <div>Logout</div>
                 <div>
                   <svg
