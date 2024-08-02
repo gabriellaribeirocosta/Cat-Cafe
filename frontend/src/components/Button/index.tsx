@@ -7,7 +7,7 @@ interface ButtonProps {
   buttonClassName?: string;
 }
  
-const Button = ({ children, onClick, buttonClassName}: ButtonProps) => {
+const Button = ({ children, onClick, buttonClassName, type}: ButtonProps) => {
   return (
     <button onClick={onClick} className={`${styles.button} ${buttonClassName}`}>
       {children}
