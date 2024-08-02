@@ -4,8 +4,8 @@ import sequelize from '../database/db-config.js'
 const UserModel = sequelize.define('User', {
   id: {
     type: DataTypes.STRING,
-    autoIncrement: true,
     primaryKey: true,
+    allowNull: false,
   },
   email: {
     type: DataTypes.STRING,
