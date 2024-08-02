@@ -1,0 +1,9 @@
+.StandardLayout {
+  margin-left: 270px;
+}
+
+@media screen and (max-width: 768px) {
+  .StandardLayout {
+    margin-left: 0;
+  }
+}

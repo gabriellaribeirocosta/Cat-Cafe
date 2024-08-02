@@ -1,0 +1,43 @@
+.Header {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+    background-color: var(--white);
+
+    & .logo_content {
+      width: 120px;
+    }
+  }
+}
+
+.Navbar {
+  padding: 10px 30px;
+  background-color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & .input_content {
+    width: 210px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Navbar {
+    padding: 0px 20px 15px 20px;
+
+    & .icon_content {
+      display: none;
+    }
+
+    & .input_content {
+      width: 100%;
+    }
+  }
+}
