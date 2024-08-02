@@ -9,6 +9,7 @@ export const productController = {
       res.status(400).send(error)
     }
   },
+
   async add(req, res) {
     try {
       const products = await Product.create(req.body)
@@ -17,6 +18,7 @@ export const productController = {
       res.status(400).send(error)
     }
   },
+
   async update(req, res) {
     try {
       const { name, description, price } = req.body
@@ -37,6 +39,7 @@ export const productController = {
       res.status(400).send(error)
     }
   },
+
   async delete(req, res) {
     try {
       const id = req.params.id
