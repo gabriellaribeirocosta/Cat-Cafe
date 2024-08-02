@@ -73,7 +73,7 @@ const SignIn = () => {
         <SectionHeader
           title="SIGN IN"
           text="Enter your credentials to access your account"
-          className={styles.sectionHeader}
+          ClassName={styles.sectionHeader}
           titleClassName={styles.sectionTitle}
           textClassName={styles.sectionText}
         />
