@@ -1,4 +1,4 @@
-import './style.module.css'
+import styles from './style.module.css'
 import React, { ChangeEvent, useState } from 'react'
  
 interface InputProps {
@@ -12,6 +12,7 @@ interface InputProps {
   pattern?: string
   title?: string
   required?: boolean
+  className?: string
 }
  
 const Input: React.FC<InputProps> = ({
@@ -24,6 +25,7 @@ const Input: React.FC<InputProps> = ({
   id,
   pattern,
   title,
+  className,
   ...props
 }) => {
   const [isBlurred, setIsBlurred] = useState(false)
@@ -50,10 +52,10 @@ const Input: React.FC<InputProps> = ({
       id={id}
       pattern={pattern}
       title={title}
-      className={`input ${inputClass} ${isBlurred ? 'blurred' : ''}`}
+      className={`${styles.input} ${inputClass} ${className} ${isBlurred ? 'blurred' : ''}`}
       {...props}
     />
   )
 }
- 
+
 export default Input
