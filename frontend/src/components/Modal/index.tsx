@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Button from '../Button/index.tsx'
 import Input from '../Input/index.tsx'
 import styles from './style.module.css'
@@ -79,7 +79,30 @@ const Modal = ({ model, modelType, action }: ModalProps) => {
 
   const handleSubmit = () => {}
 
-  const onChange = () => {}
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target
+    switch (name) {
+      case 'modelName':
+        setModelName(value)
+        break
+      case 'productPrice':
+        setProductPrice(parseFloat(value))
+        break
+      case 'catRace':
+        setCatRace(value)
+        break
+      case 'modelCategory':
+        setModelCategory(value)
+        break
+      case 'modelDescription':
+        setModelDescription(value)
+        break
+      default:
+        break
+    }
+  }
 
   return (
     <div className={styles.modalBg}>
@@ -88,12 +111,12 @@ const Modal = ({ model, modelType, action }: ModalProps) => {
           {action} {modelType}
         </h1>
         <form className={styles.form}>
-          <div>
+          <div className={styles.inputContainer}>
             <label htmlFor={'modelName'}>Name</label>
             <Input
               type={'text'}
               placeholder={`Enter the ${modelType} name`}
-              onChange={onChange}
+              onChange={handleChange}
               name={'modelName'}
               id={'modelName'}
               title={'Enter only letters, at least 3 characters'}
@@ -102,18 +125,19 @@ const Modal = ({ model, modelType, action }: ModalProps) => {
             />
           </div>
           <div className={styles.inputRow}>
-            <div>
+            <div className={styles.inputContainer}>
               {modelType === 'Product' && (
                 <>
                   <label htmlFor={'productPrice'}>Price</label>
                   <Input
                     type={'number'}
                     placeholder={`Enter the Product price`}
-                    onChange={onChange}
+                    onChange={handleChange}
                     name={'productPrice'}
                     id={'productPrice'}
                     title={'Enter a integer number'}
                     pattern={'d+(,d{1,2})?$'}
+                    inputClass={`${styles.productPrice}`}
                     required
                   />
                 </>
@@ -124,7 +148,7 @@ const Modal = ({ model, modelType, action }: ModalProps) => {
                   <Input
                     type={'text'}
                     placeholder={`Enter the Cat race`}
-                    onChange={onChange}
+                    onChange={handleChange}
                     name={'catRace'}
                     id={'catRace'}
                     title={'Enter at least 3 characters'}
@@ -134,28 +158,39 @@ const Modal = ({ model, modelType, action }: ModalProps) => {
                 </>
               )}
             </div>
-            <div className={styles.content}>
-            <label htmlFor={'modelCategory'}>Category</label>
-            <select
-              id={'modelCategory'}
-              name={'modelCategory'}
-              value={modelCategory}
-              onChange={onChange}
-              required
-            >
-              <option value={''}>Select a Category</option>
-              <option value={category1}>{category1}</option>
-              <option value={category2}>{category2}</option>
-              <option value={category3}>{category3}</option>
-            </select>
+            <div className={styles.inputContainer}>
+              <label htmlFor={'modelCategory'}>Category</label>
+              <select
+                id={'modelCategory'}
+                name={'modelCategory'}
+                value={modelCategory}
+                onChange={handleChange}
+                className={styles.categories}
+                required
+              >
+                <option className={styles.category} value={''}>
+                  Select a Category
+                </option>
+                <option className={styles.category} value={category1}>
+                  {category1}
+                </option>
+                <option className={styles.category} value={category2}>
+                  {category2}
+                </option>
+                <option className={styles.category} value={category3}>
+                  {category3}
+                </option>
+              </select>
             </div>
           </div>
-          <div>
+          <div
+            className={`${styles.inputContainer} ${styles.inputDescription}`}
+          >
             <label htmlFor={'modelDescription'}>Description</label>
             <Input
               type={'text'}
               placeholder={`Enter the ${modelType} description`}
-              onChange={onChange}
+              onChange={handleChange}
               name={'modelDescription'}
               id={'modelDescription'}
               title={'Enter at least 3 characters'}
@@ -167,9 +202,7 @@ const Modal = ({ model, modelType, action }: ModalProps) => {
             <Button onClick={handleCancel} buttonClassName={styles.cancel}>
               Cancel
             </Button>
-            <Button onClick={handleSubmit}>
-              {action} {modelType}
-            </Button>
+            <Button onClick={handleSubmit}>{action}</Button>
           </div>
         </form>
       </div>
