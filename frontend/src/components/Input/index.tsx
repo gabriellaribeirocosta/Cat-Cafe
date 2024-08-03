@@ -1,6 +1,6 @@
 import './style.module.css'
 import React, { ChangeEvent, useState } from 'react'
-
+ 
 interface InputProps {
   type?: string
   placeholder?: string
@@ -13,7 +13,7 @@ interface InputProps {
   title?: string
   required?: boolean
 }
-
+ 
 const Input: React.FC<InputProps> = ({
   type = 'text',
   placeholder = '',
@@ -27,17 +27,17 @@ const Input: React.FC<InputProps> = ({
   ...props
 }) => {
   const [isBlurred, setIsBlurred] = useState(false)
-
+ 
   const handleBlur = () => {
     if (value?.trim()) {
       setIsBlurred(true)
     }
   }
-
+ 
   const handleFocus = () => {
     setIsBlurred(false)
   }
-
+ 
   return (
     <input
       type={type}
@@ -55,5 +55,5 @@ const Input: React.FC<InputProps> = ({
     />
   )
 }
-
+ 
 export default Input

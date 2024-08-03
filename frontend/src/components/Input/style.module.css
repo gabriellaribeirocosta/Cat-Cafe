@@ -1,44 +1,39 @@
-input{
-  width: 401px;
+.input {
+  width: 100%;
   height: 44px;
   border: 1px solid;
-  padding-left: 14px;
   border-radius: 4px;
   border-color: #E5E5E5;
+  padding-left: 15px;
 }
 
-input::placeholder{
+.input::placeholder {
   color: #CDCDCD;
 }
 
-input:focus::placeholder{
+.input:focus::placeholder {
   color: white;
 }
 
-input:focus{
-  border-color: gray;
+.input:focus {
+  border-color: #143115;
   color: #6C6C6C;
   outline: none;
 }
 
-input.blurred{
+.blurred {
   background-color: #EBEBEB;
 }
 
-@media (max-width: 768px){
-  input{
-    width: 100%;
+@media (max-width: 768px) {
+  .input {
+    height: 42px;
   }
 }
 
-@media (max-width: 425px){
-  input{
+@media (max-width: 375px) {
+  .input {
+    height: 42px;
     width: 100%;
-  }
-}
-
-@media (max-width: 375px){
-  input{
-    width: 307px;
   }
 }

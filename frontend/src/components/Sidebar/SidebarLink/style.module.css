@@ -1,0 +1,34 @@
+.SidebarLink {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  padding-left: 40px;
+  border-radius: 4px;
+  color: var(--brand-color-2);
+  border: 1px solid transparent;
+  font-size: 0.875em;
+  font-weight: 500;
+
+  &:hover {
+    border: 1px solid var(--brand-color-2);
+  }
+
+  &.active {
+    color: var(--brand-color-3);
+    background-color: var(--brand-color-2);
+
+    & .icon_content svg {
+      fill: var(--brand-color-3);
+    }
+  }
+
+  & .icon_content {
+    width: 20px;
+    height: 17px;
+    margin-right: 15px;
+
+    & svg {
+      fill: var(--brand-color-2);
+    }
+  }
+}

@@ -11,7 +11,9 @@ const Header = () => {
   return (
     <>
       <header className={style.Header}>
-        <Logo text={'CAT CAFE'} />
+        <div className={style.logo_content}>
+          <Logo />
+        </div>
         <img src={hamburguerIcon} alt="" />
       </header>
       <nav className={style.Navbar}>

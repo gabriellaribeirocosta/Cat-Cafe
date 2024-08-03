@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 
-import { ProductProps } from '../../interfaces/Product'
+import { ProductContext } from '../../contexts/ProductContext'
 
 import Button from '../../components/Button'
 import DetailsTable from '../../components/DetailsTable'
@@ -8,11 +8,7 @@ import DetailsTable from '../../components/DetailsTable'
 import style from './style.module.css'
 
 const Products = () => {
-  const [products, setProducts] = useState<ProductProps[]>([])
-
-  useEffect(() => {
-    setProducts([])
-  }, [])
+  const { products } = useContext(ProductContext)
 
   return (
     <section className={style.Products}>
