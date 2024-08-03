@@ -1,35 +1,43 @@
-import styles from './style.module.css'
+import './style.module.css'
 import React, { ChangeEvent, useState } from 'react'
-
+ 
 interface InputProps {
   type?: string
   placeholder?: string
-  value: string
+  value?: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   inputClass?: string
-  className?: string
+  name?: string
+  id?: string
+  pattern?: string
+  title?: string
+  required?: boolean
 }
-
+ 
 const Input: React.FC<InputProps> = ({
   type = 'text',
   placeholder = '',
   value,
   onChange,
-  className = '',
+  inputClass,
+  name,
+  id,
+  pattern,
+  title,
   ...props
 }) => {
   const [isBlurred, setIsBlurred] = useState(false)
-
+ 
   const handleBlur = () => {
-    if (value.trim()) {
+    if (value?.trim()) {
       setIsBlurred(true)
     }
   }
-
+ 
   const handleFocus = () => {
     setIsBlurred(false)
   }
-
+ 
   return (
     <input
       type={type}
@@ -38,12 +46,14 @@ const Input: React.FC<InputProps> = ({
       onChange={onChange}
       onBlur={handleBlur}
       onFocus={handleFocus}
-      className={`${styles.input} ${className} ${
-        isBlurred ? styles.blurred : ''
-      }`}
+      name={name}
+      id={id}
+      pattern={pattern}
+      title={title}
+      className={`input ${inputClass} ${isBlurred ? 'blurred' : ''}`}
       {...props}
     />
   )
 }
-
+ 
 export default Input

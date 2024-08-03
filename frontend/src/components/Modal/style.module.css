@@ -1,0 +1,47 @@
+@import url(../../styles/_variables.css);
+
+.modalBg{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+    left: 0px;;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.541);
+}
+
+.modal {
+    display: flex;
+    position: fixed;
+    top: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 520px;
+    background-color: #FDFDFD;
+    border-radius: 10px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    margin: 22px 0px;
+    color: var(--brand-color-2);
+}
+
+.form {
+    border-top: 1px solid rgb(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 16px;
+}
+
+.inputRow {
+    display: flex;
+}
+
+.inputRow Input{
+    width: 100%;
+}
