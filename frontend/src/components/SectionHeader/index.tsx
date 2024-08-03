@@ -3,13 +3,16 @@ import styles from './style.module.css'
 interface SectionHeaderProps {
     title: string;
     text: string;
+    ClassName?: string;
+    textClassName?: string;
+    titleClassName?: string;
 }
 
-const SectionHeader: React.FC<SectionHeaderProps> = ({ title, text }) => {
+const SectionHeader: React.FC<SectionHeaderProps> = ({ title, text, ClassName, textClassName, titleClassName }) => {
   return (
-    <div>
-        <h1 className={`${styles.title}`}>{title}</h1>
-        <p className={`${styles.text}`}>{text}</p>
+    <div className={`${ClassName}`}>
+        <h1 className={`${styles.title} ${titleClassName}`}>{title}</h1>
+        <p className={`${styles.text} ${textClassName}`}>{text}</p>
     </div>
   );
 };

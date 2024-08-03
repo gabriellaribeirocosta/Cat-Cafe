@@ -1,19 +1,25 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import sequelize from './database/db-config.js'
-import productRouter from './routes/product.js'
-import catRouter from './routes/cat.js'
-import userRouter from './routes/user.js'
+import express from 'express'
+import cors from 'cors'
+import bodyParser from 'body-parser'
+import productRouter from './src/routes/product.js'
+import catRouter from './src/routes/cat.js'
+import userRouter from './src/routes/user.js'
+import getTotalRouter from './src/routes/getTotal.js'
+import sequelize from './src/database/db-config.js'
 
-const app = express();
+const app = express()
 
-app.use(bodyParser.json());
-app.use('/product', productRouter);
-app.use('/cat', catRouter);
-app.use('/user', userRouter);
+app.use(cors())
+app.use(bodyParser.json())
+app.use('/product', productRouter)
+app.use('/cat', catRouter)
+app.use('/user', userRouter)
+app.use('/get-total', getTotalRouter)
 
-const PORT = 3000;
+const PORT = 3000
 
-app.listen(PORT, () => {
-  console.info(`Server running on http://localhost:${PORT}`)
-});
+sequelize.sync().then(
+  app.listen(PORT, () => {
+    console.info(`Server running on http://localhost:${PORT}`)
+  }),
+)

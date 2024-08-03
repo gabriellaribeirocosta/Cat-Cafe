@@ -1,28 +1,3 @@
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.vertical_bar{
-  width: 6px;
-  height: 39px;
-  background-color: #8BAA80;
-  margin-right: 10px;
-}
-
-.text{
-  font-size: 32px;
-  font-weight: bold;
-  color: #143115;
-  font-family: 'Montserrat';
-}
-
-@media (max-width: 768px){
-  .text{
-    font-size: 20px;
-  }
-  .vertical_bar{
-    width: 6px;
-    height: 24px;
-  }
+.Logo {
+  width: 100%;
 }
