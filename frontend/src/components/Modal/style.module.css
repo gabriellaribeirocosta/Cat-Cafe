@@ -1,3 +1,5 @@
+@import url(../../styles/_variables.css);
+
 .modalBg{
     position: fixed;
     display: flex;
@@ -17,7 +19,29 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 520px;
     background-color: #FDFDFD;
     border-radius: 10px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    margin: 22px 0px;
+    color: var(--brand-color-2);
+}
+
+.form {
+    border-top: 1px solid rgb(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 16px;
+}
+
+.inputRow {
+    display: flex;
+}
+
+.inputRow Input{
+    width: 100%;
 }

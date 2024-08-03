@@ -22,6 +22,8 @@ const Input: React.FC<InputProps> = ({
   inputClass,
   name,
   id,
+  pattern,
+  title,
   ...props
 }) => {
   const [isBlurred, setIsBlurred] = useState(false)
@@ -45,6 +47,9 @@ const Input: React.FC<InputProps> = ({
       onBlur={handleBlur}
       onFocus={handleFocus}
       name={name}
+      id={id}
+      pattern={pattern}
+      title={title}
       className={`input ${inputClass} ${isBlurred ? 'blurred' : ''}`}
       {...props}
     />

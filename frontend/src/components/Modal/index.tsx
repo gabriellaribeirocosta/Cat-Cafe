@@ -37,17 +37,17 @@ const Modal = ({ model, modelType, action }: ModalProps) => {
   const [column, setColumn] = useState<string>('')
 
   useEffect(() => {
-    if(action === 'Update' && model) {
+    if (action === 'Update' && model) {
       setModelName(model.name)
       setModelCategory(model.category)
       setModelDescription(model.description)
-      if(modelType === 'Product' && 'price' in model){
-        setProductPrice(model.price)   
+      if (modelType === 'Product' && 'price' in model) {
+        setProductPrice(model.price)
         setColumn('Price')
         setCategory1('Drink')
         setCategory2('Desert')
         setCategory3('Snack')
-      } else if (modelType === 'Cat' && 'race' in model){
+      } else if (modelType === 'Cat' && 'race' in model) {
         setCatRace(model.race)
         setColumn('Race')
         setCategory1('Puppy')
@@ -55,11 +55,11 @@ const Modal = ({ model, modelType, action }: ModalProps) => {
         setCategory3('Elder')
       }
     }
-    if(modelType === 'Product'){
+    if (modelType === 'Product') {
       setCategory1('Drink')
       setCategory2('Desert')
       setCategory3('Snack')
-    } else if(modelType === 'Cat'){
+    } else if (modelType === 'Cat') {
       setCategory1('Puppy')
       setCategory2('Adult')
       setCategory3('Elder')
@@ -70,43 +70,42 @@ const Modal = ({ model, modelType, action }: ModalProps) => {
     setModelName('')
     setModelCategory('')
     setModelDescription('')
-    if(modelType === 'Product'){
+    if (modelType === 'Product') {
       setProductPrice(0)
-    }else if(modelType === 'Cat'){
+    } else if (modelType === 'Cat') {
       setCatRace('')
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = () => {}
 
-  }
-
-  const onChange = () => {
-
-  }
+  const onChange = () => {}
 
   return (
     <div className={styles.modalBg}>
       <div className={styles.modal}>
-        <h1>{action} {modelType}</h1>
-        <form>
+        <h1 className={styles.title}>
+          {action} {modelType}
+        </h1>
+        <form className={styles.form}>
           <div>
-            <div>
-              <label htmlFor={'modelName'}>Name</label>
-              <Input
-                type={'text'}
-                placeholder={`Enter the ${modelType} name`}
-                onChange={onChange}
-                name={'modelName'}
-                id={'modelName'}
-                title={'Enter only letters, at least 3 characters'}
-                pattern = {'[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{3,}$'}
-                required
-              />
-            </div>
+            <label htmlFor={'modelName'}>Name</label>
+            <Input
+              type={'text'}
+              placeholder={`Enter the ${modelType} name`}
+              onChange={onChange}
+              name={'modelName'}
+              id={'modelName'}
+              title={'Enter only letters, at least 3 characters'}
+              pattern={'[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{3,}$'}
+              required
+            />
+          </div>
+          <div className={styles.inputRow}>
             <div>
               {modelType === 'Product' && (
-                <><label htmlFor={'productPrice'}>Price</label>
+                <>
+                  <label htmlFor={'productPrice'}>Price</label>
                   <Input
                     type={'number'}
                     placeholder={`Enter the Product price`}
@@ -114,12 +113,14 @@ const Modal = ({ model, modelType, action }: ModalProps) => {
                     name={'productPrice'}
                     id={'productPrice'}
                     title={'Enter a integer number'}
-                    pattern={'\d+(,\d{1,2})?$'}
-                    required />
+                    pattern={'d+(,d{1,2})?$'}
+                    required
+                  />
                 </>
               )}
               {modelType === 'Cat' && (
-                <><label htmlFor={'catRace'}>Race</label>
+                <>
+                  <label htmlFor={'catRace'}>Race</label>
                   <Input
                     type={'text'}
                     placeholder={`Enter the Cat race`}
@@ -128,38 +129,47 @@ const Modal = ({ model, modelType, action }: ModalProps) => {
                     id={'catRace'}
                     title={'Enter at least 3 characters'}
                     pattern={'.{3,}$'}
-                    required />
+                    required
+                  />
                 </>
               )}
             </div>
-            <div>
-              <label htmlFor={'modelCategory'}>Category</label>
-              <select id={'modelCategory'} name={'modelCategory'} value={modelCategory} onChange={onChange} required>
-                <option value={''}>Select a Category</option>
-                <option value={category1}>{category1}</option>
-                <option value={category2}>{category2}</option>
-                <option value={category3}>{category3}</option>
-              </select>
+            <div className={styles.content}>
+            <label htmlFor={'modelCategory'}>Category</label>
+            <select
+              id={'modelCategory'}
+              name={'modelCategory'}
+              value={modelCategory}
+              onChange={onChange}
+              required
+            >
+              <option value={''}>Select a Category</option>
+              <option value={category1}>{category1}</option>
+              <option value={category2}>{category2}</option>
+              <option value={category3}>{category3}</option>
+            </select>
             </div>
-            <div>
-              <label htmlFor={'modelDescription'}>Description</label>
-              <Input
-                type={'text'}
-                placeholder={`Enter the ${modelType} description`}
-                onChange={onChange}
-                name={'modelDescription'}
-                id={'modelDescription'}
-                title={'Enter at least 3 characters'}
-                pattern={'.{3,}$'}
-                required
-              />
-            </div>
-            <div className={styles.buttons}>
-              <Button onClick={handleCancel} buttonClassName={styles.cancel}>
-                Cancel
-              </Button>
-              <Button onClick={handleSubmit}>{action} {modelType}</Button>
-            </div>
+          </div>
+          <div>
+            <label htmlFor={'modelDescription'}>Description</label>
+            <Input
+              type={'text'}
+              placeholder={`Enter the ${modelType} description`}
+              onChange={onChange}
+              name={'modelDescription'}
+              id={'modelDescription'}
+              title={'Enter at least 3 characters'}
+              pattern={'.{3,}$'}
+              required
+            />
+          </div>
+          <div className={styles.buttons}>
+            <Button onClick={handleCancel} buttonClassName={styles.cancel}>
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit}>
+              {action} {modelType}
+            </Button>
           </div>
         </form>
       </div>
