@@ -8,7 +8,7 @@ const findAll = async () => {
 }
 
 const create = async (product: ProductProps) => {
-  const response = await http.post<ProductProps>('/product', product)
+  const response = await http.post<ProductProps>('product', product)
   return response.data
 }
 
