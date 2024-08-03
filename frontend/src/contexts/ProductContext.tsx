@@ -1,8 +1,16 @@
-import { createContext, ReactNode, useEffect, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
+
+import { AuthContext } from './AuthContext'
 
 import ProductService from '../services/product/product.service'
 
-import { ProductProps } from '../interfaces/Product'
+import { ProductProps, ProductPropsWithUID } from '../interfaces/Product'
 
 interface ProductContextType {
   products: ProductProps[] | null
@@ -21,6 +29,8 @@ interface ProductContextProviderProps {
 export const ProductContextProvider = (props: ProductContextProviderProps) => {
   const { children } = props
 
+  const { user } = useContext(AuthContext)
+
   const [products, setProducts] = useState<ProductProps[]>([])
 
   const fetchProducts = async () => {
@@ -30,8 +40,17 @@ export const ProductContextProvider = (props: ProductContextProviderProps) => {
   }
 
   const addProduct = async (product: ProductProps) => {
+    if (!user?.uid) {
+      console.log('A UID must be passed in order to a new product.')
+      return
+    }
+
     console.log('Product sent as body of POST: ', product)
-    const new_product = await ProductService.create(product)
+    const productWithUID: ProductPropsWithUID = {
+      ...product,
+      user_id: user?.uid,
+    }
+    const new_product = await ProductService.create(productWithUID)
 
     console.log(
       'Product send back as response from API after POST: ',

@@ -4,6 +4,9 @@ export interface ProductProps {
   description: string
   price: number
   category: string
+}
+
+export interface ProductPropsWithUID extends ProductProps {
   createdAt?: string
   user_id: string
 }
