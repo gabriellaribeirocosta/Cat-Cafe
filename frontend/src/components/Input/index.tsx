@@ -1,35 +1,45 @@
 import styles from './style.module.css'
 import React, { ChangeEvent, useState } from 'react'
-
+ 
 interface InputProps {
   type?: string
   placeholder?: string
-  value: string
+  value?: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   inputClass?: string
+  name?: string
+  id?: string
+  pattern?: string
+  title?: string
+  required?: boolean
   className?: string
 }
-
+ 
 const Input: React.FC<InputProps> = ({
   type = 'text',
   placeholder = '',
   value,
   onChange,
-  className = '',
+  inputClass,
+  name,
+  id,
+  pattern,
+  title,
+  className,
   ...props
 }) => {
   const [isBlurred, setIsBlurred] = useState(false)
-
+ 
   const handleBlur = () => {
-    if (value.trim()) {
+    if (value?.trim()) {
       setIsBlurred(true)
     }
   }
-
+ 
   const handleFocus = () => {
     setIsBlurred(false)
   }
-
+ 
   return (
     <input
       type={type}
@@ -38,9 +48,11 @@ const Input: React.FC<InputProps> = ({
       onChange={onChange}
       onBlur={handleBlur}
       onFocus={handleFocus}
-      className={`${styles.input} ${className} ${
-        isBlurred ? styles.blurred : ''
-      }`}
+      name={name}
+      id={id}
+      pattern={pattern}
+      title={title}
+      className={`${styles.input} ${inputClass} ${className} ${isBlurred ? 'blurred' : ''}`}
       {...props}
     />
   )
