@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Button from '../Button/index.tsx'
 import Input from '../Input/index.tsx'
 import styles from './style.module.css'
+import ProductService from '../../services/product/product.service.ts'
 
 interface Product {
   id?: number
@@ -23,9 +24,10 @@ interface ModalProps {
   model?: Product | Cat
   modelType: 'Product' | 'Cat'
   action: 'Update' | 'Create'
+  closeModal: () => void
 }
 
-const Modal = ({ model, modelType, action }: ModalProps) => {
+const Modal = ({ model, modelType, action, closeModal }: ModalProps) => {
   const [modelName, setModelName] = useState<string>('')
   const [productPrice, setProductPrice] = useState<number>(0)
   const [catRace, setCatRace] = useState<string>('')
@@ -66,23 +68,15 @@ const Modal = ({ model, modelType, action }: ModalProps) => {
     }
   }, [model, modelType, action])
 
-  const handleCancel = () => {
-    setModelName('')
-    setModelCategory('')
-    setModelDescription('')
-    if (modelType === 'Product') {
-      setProductPrice(0)
-    } else if (modelType === 'Cat') {
-      setCatRace('')
-    }
+
+  const handleSubmit = async () => {
+
   }
 
-  const handleSubmit = () => {}
-
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { name, value } = e.target
+    const { name, value } = event.target
     switch (name) {
       case 'modelName':
         setModelName(value)
@@ -199,7 +193,7 @@ const Modal = ({ model, modelType, action }: ModalProps) => {
             />
           </div>
           <div className={styles.buttons}>
-            <Button onClick={handleCancel} buttonClassName={styles.cancel}>
+            <Button onClick={closeModal} className={styles.cancel}>
               Cancel
             </Button>
             <Button onClick={handleSubmit}>{action}</Button>
