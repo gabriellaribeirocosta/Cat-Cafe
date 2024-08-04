@@ -4,17 +4,19 @@ import bodyParser from 'body-parser'
 import productRouter from './src/routes/product.js'
 import catRouter from './src/routes/cat.js'
 import userRouter from './src/routes/user.js'
-import getTotalRouter from './src/routes/getTotal.js'
+import totalRouter from './src/routes/total.js'
 import sequelize from './src/database/db-config.js'
+import { authMiddleware } from './src/middlewares/authMiddleware.js'
 
 const app = express()
 
 app.use(cors())
 app.use(bodyParser.json())
+app.use(authMiddleware)
 app.use('/product', productRouter)
 app.use('/cat', catRouter)
 app.use('/user', userRouter)
-app.use('/get-total', getTotalRouter)
+app.use('/get-total', totalRouter)
 
 const PORT = 3000
 
