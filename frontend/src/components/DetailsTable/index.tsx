@@ -4,9 +4,10 @@ import style from './style.module.css'
 interface DetailsTableProps {
   products: ProductProps[] | null
   openConfirmModal: (product: ProductProps) => void
+  openUpdateModal: (product: ProductProps) => void
 }
 
-const DetailsTable = ({ products, openConfirmModal }: DetailsTableProps) => {
+const DetailsTable = ({ products, openConfirmModal, openUpdateModal }: DetailsTableProps) => {
   return (
     <table className={style.DetailsTable}>
       <thead>
@@ -21,7 +22,7 @@ const DetailsTable = ({ products, openConfirmModal }: DetailsTableProps) => {
       </thead>
       <tbody>
         {products?.map((product: ProductProps) => {
-          return <TableBodyRow key={product.id} item={product} openConfirmModal={openConfirmModal}/>
+          return <TableBodyRow key={product.id} item={product} openConfirmModal={openConfirmModal} openUpdateModal={openUpdateModal}/>
         })}
       </tbody>
     </table>
@@ -31,9 +32,10 @@ const DetailsTable = ({ products, openConfirmModal }: DetailsTableProps) => {
 interface TableBodyRowProps {
   item: ProductProps
   openConfirmModal: (product: ProductProps) => void
+  openUpdateModal: (product: ProductProps) => void
 }
 
-const TableBodyRow = ({ item , openConfirmModal }:TableBodyRowProps) => {
+const TableBodyRow = ({ item , openConfirmModal, openUpdateModal }:TableBodyRowProps) => {
   return (
     <tr>
       <td>
@@ -49,6 +51,7 @@ const TableBodyRow = ({ item , openConfirmModal }:TableBodyRowProps) => {
           <TableButton
             title="Update product"
             imgSrc="/src/assets/images/icon-pen.png"
+            onClick={() => openUpdateModal(item)}
           />
           <TableButton
             title="Delete product"

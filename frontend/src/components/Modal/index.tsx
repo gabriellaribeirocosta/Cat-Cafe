@@ -3,6 +3,7 @@ import Button from '../Button/index.tsx'
 import Input from '../Input/index.tsx'
 import styles from './style.module.css'
 import ProductService from '../../services/product/product.service.ts'
+import { ProductProps } from '../../interfaces/Product.ts'
 
 interface Product {
   id?: number
@@ -69,20 +70,38 @@ const Modal = ({ model, modelType, action, closeModal }: ModalProps) => {
   }, [model, modelType, action])
 
   const handleSubmit = async () => {
-    if (modelType === 'Product') {
-      const newModel = {
+    if(action === 'Create'){
+      if (modelType === 'Product') {
+        const newModel = {
+          name: modelName,
+          description: modelDescription,
+          category: modelCategory,
+          price: productPrice,
+        }
+        try {
+          if (newModel) {
+            await ProductService.create(newModel as Product)
+            closeModal()
+          }
+        } catch (error) {
+          console.error(error)
+        }
+      }
+    } else if(action === 'Update' && model && model.id !== undefined){
+      const updatedModel: ProductProps = {
+        id: model.id,
         name: modelName,
         description: modelDescription,
         category: modelCategory,
         price: productPrice,
       }
       try {
-        if (newModel) {
-          await ProductService.create(newModel as Product)
+        if (updatedModel && model.id !== undefined) {
+          await ProductService.update(model.id, updatedModel);
           closeModal()
         }
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     }
   }
@@ -126,6 +145,7 @@ const Modal = ({ model, modelType, action, closeModal }: ModalProps) => {
               placeholder={`Enter the ${modelType} name`}
               onChange={handleChange}
               name={'modelName'}
+              value={modelName}
               id={'modelName'}
               title={'Enter only letters, at least 3 characters'}
               pattern={'[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]{3,}$'}
@@ -143,6 +163,7 @@ const Modal = ({ model, modelType, action, closeModal }: ModalProps) => {
                     onChange={handleChange}
                     name={'productPrice'}
                     id={'productPrice'}
+                    value={productPrice.toString()}
                     title={'Enter a integer number'}
                     pattern={'d+(,d{1,2})?$'}
                     inputClass={`${styles.productPrice}`}
@@ -201,6 +222,7 @@ const Modal = ({ model, modelType, action, closeModal }: ModalProps) => {
               onChange={handleChange}
               name={'modelDescription'}
               id={'modelDescription'}
+              value={modelDescription}
               title={'Enter at least 3 characters'}
               pattern={'.{3,}$'}
               required
