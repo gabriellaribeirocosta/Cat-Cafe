@@ -121,29 +121,30 @@
 @media screen and (max-width: 768px) {
   .Sidebar {
     width: 0;
+    transition: width 0.3s;
+  }
 
-    &[data-is-mobile-menu-active='true'] {
-      width: 100%;
+  .Sidebar.active {
+    width: 100%;
+    transition: width 0.3s;
+  }
+  & .wrapper {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  & .button_container {
+    display: initial;
+  }
+
+  & .main_container {
+    & .logo_content {
+      display: none;
     }
 
-    & .wrapper {
-      padding-right: 20px;
-      padding-left: 20px;
-    }
-
-    & .button_container {
-      display: initial;
-    }
-
-    & .main_container {
-      & .logo_content {
-        display: none;
-      }
-
-      & .profile_content {
-        margin-top: 0;
-        margin-bottom: 10vh;
-      }
+    & .profile_content {
+      margin-top: 0;
+      margin-bottom: 10vh;
     }
   }
 }

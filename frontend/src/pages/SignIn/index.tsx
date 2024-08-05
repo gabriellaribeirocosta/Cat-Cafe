@@ -28,9 +28,8 @@ const SignIn = () => {
     if (!email || !password) return
     const response = await authService.signIn(email, password)
     if (typeof response === 'object' && response.uid) {
-      // usuario autenticado
+      await user.create()
       setError(null)
-      //redirecionar
     } else if (typeof response === 'string') {
       setError('Your username or password may be incorrect.')
     }
