@@ -101,7 +101,7 @@ const TableButton = ({ title, imgSrc, onClick }: PropsButton) => {
 
 const _formatDate = (dateAsString: string) => {
   const date = new Date(dateAsString)
-  const day = String(date.getMonth()).padStart(2, '0')
+  const day = String(date.getUTCDate()).padStart(2, '0')
   const month = date.toLocaleString('default', { month: 'long' }).slice(0, 3)
   const year = date.getFullYear()
   return `${day}-${month}, ${year}`
