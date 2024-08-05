@@ -1,25 +1,25 @@
 import {
   createContext,
   ReactNode,
-  useContext,
+  SetStateAction,
   useEffect,
   useState,
 } from 'react'
 
-import { AuthContext } from './AuthContext'
-
 import ProductService from '../services/product/product.service'
 
-import { ProductProps, ProductPropsWithUID } from '../interfaces/Product'
+import { ProductProps } from '../interfaces/Product'
 
 interface ProductContextType {
   products: ProductProps[] | null
+  setProducts: React.Dispatch<SetStateAction<ProductProps[]>>
   addProduct: (product: ProductProps) => void
 }
 
 export const ProductContext = createContext<ProductContextType>({
   products: null,
   addProduct: () => {},
+  setProducts: () => {},
 })
 
 interface ProductContextProviderProps {
@@ -28,8 +28,6 @@ interface ProductContextProviderProps {
 
 export const ProductContextProvider = (props: ProductContextProviderProps) => {
   const { children } = props
-
-  const { user } = useContext(AuthContext)
 
   const [products, setProducts] = useState<ProductProps[]>([])
 
@@ -40,36 +38,29 @@ export const ProductContextProvider = (props: ProductContextProviderProps) => {
   }
 
   const addProduct = async (product: ProductProps) => {
-    if (!user?.uid) {
-      console.log('A UID must be passed in order to a new product.')
-      return
-    }
-
     console.log('Product sent as body of POST: ', product)
-    const productWithUID: ProductPropsWithUID = {
-      ...product,
-      user_id: user?.uid,
-    }
-    const new_product = await ProductService.create(productWithUID)
+    const newProduct = await ProductService.create(product)
 
     console.log(
       'Product send back as response from API after POST: ',
-      new_product,
+      newProduct,
     )
     setProducts((currentState) => {
-      return [...currentState, new_product]
+      return [...currentState, newProduct]
     })
   }
 
   useEffect(() => {
     console.log('ProductContext was mounted')
     fetchProducts()
+    console.log(products)
   }, [])
 
   return (
     <ProductContext.Provider
       value={{
         products,
+        setProducts,
         addProduct,
       }}
     >
