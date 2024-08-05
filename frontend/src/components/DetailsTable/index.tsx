@@ -61,7 +61,7 @@ const TableBodyRow = ({
       <td className={style.desc}>{item.description}</td>
       <td>R$ {item.price}</td>
       <td>{item.category}</td>
-      <td>{item.createdAt}</td>
+      <td>{item.createdAt && _formatDate(item.createdAt)}</td>
       <td>
         <div className={style.buttons_wrapper}>
           <TableButton
@@ -97,6 +97,14 @@ const TableButton = ({ title, imgSrc, onClick }: PropsButton) => {
       <img src={imgSrc} alt="" />
     </button>
   )
+}
+
+const _formatDate = (dateAsString: string) => {
+  const date = new Date(dateAsString)
+  const day = String(date.getMonth()).padStart(2, '0')
+  const month = date.toLocaleString('default', { month: 'long' }).slice(0, 3)
+  const year = date.getFullYear()
+  return `${day}-${month}, ${year}`
 }
 
 export default DetailsTable
