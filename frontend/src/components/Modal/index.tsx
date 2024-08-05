@@ -68,13 +68,27 @@ const Modal = ({ model, modelType, action, closeModal }: ModalProps) => {
     }
   }, [model, modelType, action])
 
-
   const handleSubmit = async () => {
-
+    if (modelType === 'Product') {
+      const newModel = {
+        name: modelName,
+        description: modelDescription,
+        category: modelCategory,
+        price: productPrice,
+      }
+      try {
+        if (newModel) {
+          await ProductService.create(newModel as Product)
+          closeModal()
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
   }
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = event.target
     switch (name) {
