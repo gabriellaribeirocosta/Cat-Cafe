@@ -1,19 +1,28 @@
 # Cat Cafe API
 
-## Development
+## Installation
 
-In order to start the app, run the following commands in the terminal:
+Change into the backend repository and install the dependencies:
 
 ```bash
-# clone the repo in your local machine
-git clone https://github.com/gabristle/Cat-Cafe/
+cd cat-cafe/backend
+npm install
 
-# go to backend folder
-cd ./Cat-Cafe/backend
+# Start the development server
+npm run dev
+```
 
-# install all the dependencies
-npm i
+## File Structure
 
-# start in development mode
-npm run start:dev
+The backend follows the Model-View-Controller (MVC) framework.
+
+```
+./
+|-- src/
+    |-- controllers/
+    |-- database/
+    |-- middlewares/
+    |-- models/
+    |-- routes/
+    app.js
 ```
