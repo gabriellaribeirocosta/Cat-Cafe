@@ -36,21 +36,11 @@ const Sidebar = () => {
     const response = await authService.logout()
     if (!response) {
       setProducts([])
-      console.log(
-        'Log out request to Firebase Auth has succeeded. Redirecting user to login page...',
-      )
-    } else {
-      console.log(
-        'Response is undefined, log out request to Firebase Auth might have failed.',
-      )
     }
   }
 
   useEffect(() => {
-    console.log('Component Sidebar was mounted')
     if (!loading) {
-      console.log('Loading from Auth Context has finished')
-
       setUserInfo({
         email: user?.email,
         displayName: user?.displayName || user?.email?.split('@')[0],
