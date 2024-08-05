@@ -1,10 +1,11 @@
-import { signOut } from 'firebase/auth'
 import { auth } from '../conf/firebaseConf'
+import { User, Auth } from 'firebase/auth'
 import { FirebaseError } from 'firebase/app'
 
-export async function logout(): Promise<void | string> {
+export function currentUser(): User | null | string {
   try {
-    return await signOut(auth)
+    const { currentUser }: Auth = auth
+    return currentUser
   } catch (error) {
     if (error instanceof FirebaseError) {
       return error.code

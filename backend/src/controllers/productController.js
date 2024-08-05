@@ -3,8 +3,7 @@ import Product from '../models/ProductModel.js'
 export const productController = {
   async list(req, res) {
     try {
-      const { user_id } = req.user
-      const products = await Product.findAll({ where: { user_id: user_id } })
+      const products = await Product.findAll()
       res.status(200).json(products)
     } catch (error) {
       res.status(400).send(error)
@@ -13,16 +12,8 @@ export const productController = {
 
   async add(req, res) {
     try {
-      const { user_id } = req.user
-      const { name, description, price, category } = req.body
-      const product = await Product.create({
-        name: name,
-        user_id: user_id,
-        description: description,
-        price: price,
-        category: category,
-      })
-      res.status(201).json(product)
+      const products = await Product.create(req.body)
+      res.status(201).json(products)
     } catch (error) {
       res.status(400).send(error)
     }
@@ -30,25 +21,20 @@ export const productController = {
 
   async update(req, res) {
     try {
-      const { name, description, price, category } = req.body
+      const { name, description, price } = req.body
       const id = req.params.id
+      const product = await Product.findOne({ where: { id } })
 
-      const updateProduct = await Product.update(
-        {
-          name: name,
-          description: description,
-          price: price,
-          category: category,
-        },
-        { where: { id: id } },
-      )
-
-      if (updateProduct == 0) {
-        return res.status(400).json('Cat not found!')
+      if (!product) {
+        return res.status(400).json('Product not found!')
       }
 
-      const product = await Product.findOne({ where: { id: id } })
-      res.status(200).json(product)
+      product.name = name
+      product.description = description
+      product.price = price
+
+      await product.save()
+      res.status(201).json('Product updated with sucess!')
     } catch (error) {
       res.status(400).send(error)
     }

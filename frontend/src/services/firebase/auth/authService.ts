@@ -3,19 +3,19 @@ import { signUp } from './authService/signUp'
 import { signIn } from './authService/signIn'
 import { googleAuth } from './authService/googleAuth'
 import { facebookAuth } from './authService/facebookAuth'
+import { currentUser } from './authService/currentUser'
 import { logout } from './authService/logout'
 import { userAuthState } from './authService/userAuthState'
 import { Unsubscribe } from 'firebase/auth'
-import { userIdToken } from './authService/userIdToken'
 
 interface AuthService {
   signUp(email: string, password: string): Promise<User | string>
   signIn(email: string, password: string): Promise<User | string>
   googleAuth(): Promise<User | string>
   facebookAuth(): Promise<User | string>
+  currentUser(): User | null | string
   logout(): Promise<void | string>
   userAuthState(callback: (user: User | null) => void): Unsubscribe
-  userIdToken(): Promise<string | null>
 }
 
 export const authService: AuthService = {
@@ -23,7 +23,7 @@ export const authService: AuthService = {
   signIn,
   googleAuth,
   facebookAuth,
+  currentUser,
   logout,
   userAuthState,
-  userIdToken,
 }

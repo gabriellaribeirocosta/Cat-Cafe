@@ -9,7 +9,7 @@ import style from './style.module.css'
 import Logo from '../Logo'
 import SidebarLink from './SidebarLink'
 import { IconLogout, IconHome, IconGraduationCap } from '../Icons'
-import { ProductContext } from '../../contexts/ProductContext'
+
 type UserInfoType = {
   email: string | null | undefined
   displayName: string | null | undefined
@@ -18,7 +18,6 @@ type UserInfoType = {
 
 const Sidebar = () => {
   const { user, loading } = useContext(AuthContext)
-  const { setProducts } = useContext(ProductContext)
 
   const [userInfo, setUserInfo] = useState<UserInfoType>({
     email: '',
@@ -34,8 +33,8 @@ const Sidebar = () => {
 
   const handleLogout = async () => {
     const response = await authService.logout()
+
     if (!response) {
-      setProducts([])
       console.log(
         'Log out request to Firebase Auth has succeeded. Redirecting user to login page...',
       )
