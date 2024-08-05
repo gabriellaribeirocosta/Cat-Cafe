@@ -33,27 +33,18 @@ export const ProductContextProvider = (props: ProductContextProviderProps) => {
 
   const fetchProducts = async () => {
     const data = await ProductService.findAll()
-    console.log(data)
     setProducts([...data])
   }
 
   const addProduct = async (product: ProductProps) => {
-    console.log('Product sent as body of POST: ', product)
     const newProduct = await ProductService.create(product)
-
-    console.log(
-      'Product send back as response from API after POST: ',
-      newProduct,
-    )
     setProducts((currentState) => {
       return [...currentState, newProduct]
     })
   }
 
   useEffect(() => {
-    console.log('ProductContext was mounted')
     fetchProducts()
-    console.log(products)
   }, [])
 
   return (
