@@ -7,7 +7,11 @@ interface DetailsTableProps {
   openUpdateModal: (product: ProductProps) => void
 }
 
-const DetailsTable = ({ products, openConfirmModal, openUpdateModal }: DetailsTableProps) => {
+const DetailsTable = ({
+  products,
+  openConfirmModal,
+  openUpdateModal,
+}: DetailsTableProps) => {
   return (
     <table className={style.DetailsTable}>
       <thead>
@@ -23,7 +27,14 @@ const DetailsTable = ({ products, openConfirmModal, openUpdateModal }: DetailsTa
       </thead>
       <tbody>
         {products?.map((product: ProductProps) => {
-          return <TableBodyRow key={product.id} item={product} openConfirmModal={openConfirmModal} openUpdateModal={openUpdateModal}/>
+          return (
+            <TableBodyRow
+              key={product.id}
+              item={product}
+              openConfirmModal={openConfirmModal}
+              openUpdateModal={openUpdateModal}
+            />
+          )
         })}
       </tbody>
     </table>
@@ -36,7 +47,11 @@ interface TableBodyRowProps {
   openUpdateModal: (product: ProductProps) => void
 }
 
-const TableBodyRow = ({ item , openConfirmModal, openUpdateModal }:TableBodyRowProps) => {
+const TableBodyRow = ({
+  item,
+  openConfirmModal,
+  openUpdateModal,
+}: TableBodyRowProps) => {
   return (
     <tr>
       <td>
@@ -73,7 +88,12 @@ interface PropsButton {
 
 const TableButton = ({ title, imgSrc, onClick }: PropsButton) => {
   return (
-    <button type="button" title={title} className={style.TableButton} onClick={onClick}>
+    <button
+      type="button"
+      title={title}
+      className={style.TableButton}
+      onClick={onClick}
+    >
       <img src={imgSrc} alt="" />
     </button>
   )
