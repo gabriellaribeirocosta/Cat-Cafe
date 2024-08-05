@@ -10,6 +10,7 @@
   cursor: pointer;
   text-align: left;
   border: none;
+  font-weight: 500;
   position: relative;
   background-color: #becfb83e;
 }
