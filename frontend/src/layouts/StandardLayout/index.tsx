@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import MainContent from '../../components/MainContent'
@@ -6,12 +7,18 @@ import Header from '../../components/Header'
 
 import style from './style.module.css'
 
-const StandardLayout = () => {
+const StandardLayout: React.FC = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen)
+  }
+
   return (
     <>
-      <Sidebar />
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <div className={style.StandardLayout}>
-        <Header />
+        <Header toggleSidebar={toggleSidebar} />
         <MainContent>
           <Outlet />
         </MainContent>
