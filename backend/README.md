@@ -12,6 +12,10 @@ npm install
 npm run start:dev
 ```
 
+## Configuration
+`credentials.json`
+This file is required for backend configuration. It contains sensitive information such as API keys and credentials for accessing external services. **Make sure the `credentials.json` file is in the root directory of project.** 
+
 ## File Structure
 
 The backend follows the Model-View-Controller (MVC) framework.
