@@ -1,22 +1,24 @@
 import { useContext, useEffect, useRef, useState } from 'react'
-
 import { AuthContext } from '../../contexts/AuthContext'
-
 import { authService } from '../../services/firebase/auth/authService'
-
 import style from './style.module.css'
-
 import Logo from '../Logo'
 import SidebarLink from './SidebarLink'
 import { IconLogout, IconHome, IconGraduationCap } from '../Icons'
 import { ProductContext } from '../../contexts/ProductContext'
+
 type UserInfoType = {
   email: string | null | undefined
   displayName: string | null | undefined
   initials: string | null
 }
 
-const Sidebar = () => {
+type SidebarProps = {
+  isOpen: boolean
+  toggleSidebar: () => void
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
   const { user, loading } = useContext(AuthContext)
   const { setProducts } = useContext(ProductContext)
 
@@ -29,7 +31,7 @@ const Sidebar = () => {
   const sidebarRef = useRef<HTMLElement | null>(null)
 
   const handleCloseSidebar = () => {
-    sidebarRef.current?.setAttribute('data-is-mobile-menu-active', 'false')
+    toggleSidebar()
   }
 
   const handleLogout = async () => {
@@ -61,8 +63,7 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={style.Sidebar}
-      data-is-mobile-menu-active="false"
+      className={`${style.Sidebar} ${isOpen ? style.active : ''}`}
       ref={sidebarRef}
     >
       <div className={style.wrapper}>
