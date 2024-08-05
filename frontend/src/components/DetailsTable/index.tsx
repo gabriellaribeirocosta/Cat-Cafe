@@ -15,6 +15,7 @@ const DetailsTable = ({ products, openConfirmModal, openUpdateModal }: DetailsTa
           <th></th>
           <th>Name</th>
           <th>Description</th>
+          <th>Price</th>
           <th>Category</th>
           <th>Date of include</th>
           <th></th>
