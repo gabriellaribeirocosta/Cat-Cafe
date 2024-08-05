@@ -1,12 +1,12 @@
-import { Product, ProductProps } from '../../interfaces/Product'
-
+import { ProductProps } from '../../interfaces/Product'
 import style from './style.module.css'
 
 interface DetailsTableProps {
   products: ProductProps[] | null
+  openConfirmModal: (product: ProductProps) => void
 }
 
-const DetailsTable = ({ products }: DetailsTableProps) => {
+const DetailsTable = ({ products, openConfirmModal }: DetailsTableProps) => {
   return (
     <table className={style.DetailsTable}>
       <thead>
@@ -14,7 +14,6 @@ const DetailsTable = ({ products }: DetailsTableProps) => {
           <th></th>
           <th>Name</th>
           <th>Description</th>
-          <th>Price</th>
           <th>Category</th>
           <th>Date of include</th>
           <th></th>
@@ -22,14 +21,19 @@ const DetailsTable = ({ products }: DetailsTableProps) => {
       </thead>
       <tbody>
         {products?.map((product: ProductProps) => {
-          return <TableBodyRow key={product.id} item={product} />
+          return <TableBodyRow key={product.id} item={product} openConfirmModal={openConfirmModal}/>
         })}
       </tbody>
     </table>
   )
 }
 
-const TableBodyRow = ({ item }: Product) => {
+interface TableBodyRowProps {
+  item: ProductProps
+  openConfirmModal: (product: ProductProps) => void
+}
+
+const TableBodyRow = ({ item , openConfirmModal }:TableBodyRowProps) => {
   return (
     <tr>
       <td>
@@ -49,6 +53,7 @@ const TableBodyRow = ({ item }: Product) => {
           <TableButton
             title="Delete product"
             imgSrc="/src/assets/images/icon-trash.png"
+            onClick={() => openConfirmModal(item)}
           />
         </div>
       </td>
@@ -59,11 +64,12 @@ const TableBodyRow = ({ item }: Product) => {
 interface PropsButton {
   title: string
   imgSrc: string
+  onClick?: () => void
 }
 
-const TableButton = ({ title, imgSrc }: PropsButton) => {
+const TableButton = ({ title, imgSrc, onClick }: PropsButton) => {
   return (
-    <button type="button" title={title} className={style.TableButton}>
+    <button type="button" title={title} className={style.TableButton} onClick={onClick}>
       <img src={imgSrc} alt="" />
     </button>
   )
