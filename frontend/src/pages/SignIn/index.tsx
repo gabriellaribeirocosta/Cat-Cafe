@@ -44,7 +44,6 @@ const SignIn = () => {
       setPassword('')
       await user.create()
       setError(null)
-      console.log(response.uid)
     } else if (typeof response === 'string') {
       setError('Your username or password may be incorrect.')
     }
@@ -54,7 +53,6 @@ const SignIn = () => {
     const response = await authService.googleAuth()
     if (typeof response === 'object' && response.uid) {
       await user.create()
-      console.log(response.uid)
     } else if (typeof response === 'string') {
       console.error(response)
     }
@@ -64,7 +62,6 @@ const SignIn = () => {
     const response = await authService.facebookAuth()
     if (typeof response === 'object' && response.uid) {
       await user.create()
-      console.log(response.uid)
     } else if (typeof response === 'string') {
       console.error(response)
     }
