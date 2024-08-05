@@ -1,12 +1,12 @@
-import { getTotalController } from '../controllers/getTotalController.js'
+import { totalController } from '../controllers/totalController.js'
 import express from 'express'
 import ProductModel from '../models/ProductModel.js'
 import CatModel from '../models/CatModel.js'
 
 const router = express.Router()
 
-router.get('/product', getTotalController(ProductModel))
+router.get('/product', totalController(ProductModel))
 
-router.get('/cat', getTotalController(CatModel))
+router.get('/cat', totalController(CatModel))
 
 export default router

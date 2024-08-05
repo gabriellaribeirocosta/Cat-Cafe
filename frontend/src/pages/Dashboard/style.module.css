@@ -8,6 +8,11 @@
   }
 }
 
+.cardRow {
+  display: flex;
+  gap: 30px;
+}
+
 @media screen and (max-width: 768px) {
   .Dashboard {
     & .CardsList {
@@ -16,5 +21,12 @@
       padding-top: 20px;
       padding-bottom: 20px;
     }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .cardRow {
+    flex-direction: column;
+    gap: 10px;
   }
 }

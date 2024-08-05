@@ -1,15 +1,22 @@
 import { Outlet, Navigate } from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext'
 import { useContext } from 'react'
+import { ProductContextProvider } from '../contexts/ProductContext'
 
-const PrivateRoute: React.FC = () => {
+const PrivateRoutes: React.FC = () => {
   const { user, loading } = useContext(AuthContext)
 
   if (loading) {
     return <></>
   }
 
-  return user ? <Outlet /> : <Navigate to="/login" />
+  return user ? (
+    <ProductContextProvider>
+      <Outlet />
+    </ProductContextProvider>
+  ) : (
+    <Navigate to="/login" />
+  )
 }
 
-export default PrivateRoute
+export default PrivateRoutes

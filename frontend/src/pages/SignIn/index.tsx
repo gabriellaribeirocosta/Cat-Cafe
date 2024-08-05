@@ -9,6 +9,7 @@ import logoFacebook from '../../../public/logoFacebook.png'
 import styles from './style.module.css'
 import { authService } from '../../services/firebase/auth/authService'
 import '../../styles/_reset.css'
+import user from '../../services/user/user.service'
 
 const SignIn = () => {
   const [email, setEmail] = useState<string>('')
@@ -41,6 +42,7 @@ const SignIn = () => {
     if (typeof response === 'object' && response.uid) {
       setEmail('')
       setPassword('')
+      user.create()
       setError(null)
       console.log(response.uid)
     } else if (typeof response === 'string') {
