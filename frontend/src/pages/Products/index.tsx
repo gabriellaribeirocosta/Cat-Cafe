@@ -12,7 +12,9 @@ const Products = () => {
   const { products, setProducts } = useContext(ProductContext)
   const [modalOpen, setModalOpen] = useState<boolean>(false)
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false)
+  const [updateOpen, setUpdateOpen] = useState<boolean>(false)
   const [productToRemove, setProductToRemove] = useState<ProductProps | null>(null)
+  const [productToUpdate, setProductToUpdate] = useState<ProductProps | null>(null)
 
   const openModal = () => {
     setModalOpen(true)
@@ -30,6 +32,15 @@ const Products = () => {
   const closeConfirmModal = () => {
     setProductToRemove(null)
     setConfirmOpen(false)
+  }
+
+  const openUpdateModal = (product: ProductProps) => {
+    setProductToUpdate(product)
+    setUpdateOpen(true)
+  }
+
+  const closeUpdateModal = () => {
+    setUpdateOpen(false)
   }
 
   const handleRemoveProduct = async (id: number) => {
@@ -53,9 +64,10 @@ const Products = () => {
       </header>
 
       <section className={style.ListContent}>
-        <DetailsTable products={products} openConfirmModal={openConfirmModal}/>
+        <DetailsTable products={products} openConfirmModal={openConfirmModal} openUpdateModal={openUpdateModal}/>
       </section>
       {confirmOpen && productToRemove && <Confirm closeConfirm={closeConfirmModal} product={productToRemove} handleDeleteProduct={handleRemoveProduct}/>}
+      {updateOpen && productToUpdate && <Modal modelType={'Product'} model={productToUpdate} action={'Update'} closeModal={closeUpdateModal}/>}
     </section>
   )
 }
