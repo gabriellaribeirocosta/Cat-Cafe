@@ -42,7 +42,7 @@ const SignIn = () => {
     if (typeof response === 'object' && response.uid) {
       setEmail('')
       setPassword('')
-      user.create()
+      await user.create()
       setError(null)
       console.log(response.uid)
     } else if (typeof response === 'string') {
@@ -53,6 +53,7 @@ const SignIn = () => {
   const handleGoogleLoginClick = async () => {
     const response = await authService.googleAuth()
     if (typeof response === 'object' && response.uid) {
+      await user.create()
       console.log(response.uid)
     } else if (typeof response === 'string') {
       console.error(response)
@@ -62,6 +63,7 @@ const SignIn = () => {
   const handleFacebookLoginClick = async () => {
     const response = await authService.facebookAuth()
     if (typeof response === 'object' && response.uid) {
+      await user.create()
       console.log(response.uid)
     } else if (typeof response === 'string') {
       console.error(response)
