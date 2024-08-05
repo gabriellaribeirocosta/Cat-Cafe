@@ -8,9 +8,8 @@ import style from './style.module.css'
 
 import Logo from '../Logo'
 import SidebarLink from './SidebarLink'
-import { IconLogout, IconHome, IconCoffee } from '../Icons'
+import { IconLogout, IconHome, IconGraduationCap } from '../Icons'
 import { ProductContext } from '../../contexts/ProductContext'
-
 type UserInfoType = {
   email: string | null | undefined
   displayName: string | null | undefined
@@ -90,7 +89,7 @@ const Sidebar = () => {
                   <SidebarLink
                     to="/products"
                     title="Products"
-                    icon={<IconCoffee />}
+                    icon={<IconGraduationCap />}
                   />
                 </li>
               </ul>

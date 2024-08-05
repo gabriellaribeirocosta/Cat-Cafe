@@ -1,6 +1,6 @@
 import styles from './style.module.css'
 import CardDashboard from '../../components/CardDashboard'
-import coffeeSvg from '../../../public/coffeSvg.svg'
+import productsIcon from '../../../public/productsIcon.png'
 import { ProductContext } from '../../contexts/ProductContext'
 import { useContext } from 'react'
 
@@ -14,7 +14,7 @@ const Dashboard = () => {
       <div className={styles.cardRow}>
         <CardDashboard
           className={styles.CardStyle}
-          logo={coffeeSvg}
+          logo={productsIcon}
           number={numberProducts}
         >
           Products
