@@ -3,12 +3,12 @@
   height: 44px;
   border: 1px solid;
   border-radius: 4px;
-  border-color: #e5e5e5;
+  border-color: #E5E5E5;
   padding-left: 15px;
 }
 
 .input::placeholder {
-  color: #cdcdcd;
+  color: #CDCDCD;
 }
 
 .input:focus::placeholder {
@@ -17,12 +17,12 @@
 
 .input:focus {
   border-color: #143115;
-  color: #6c6c6c;
+  color: #6C6C6C;
   outline: none;
 }
 
 .blurred {
-  background-color: #ebebeb;
+  background-color: #EBEBEB;
 }
 
 @media (max-width: 768px) {

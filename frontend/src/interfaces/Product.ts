@@ -1,10 +1,10 @@
 export interface ProductProps {
-  id?: number
+  id: number
   name: string
   description: string
   price: number
   category: string
-  createdAt?: string
+  createdAt: string
 }
 
 export interface Product {

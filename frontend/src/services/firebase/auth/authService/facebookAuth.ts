@@ -16,6 +16,6 @@ export async function facebookAuth(): Promise<User | string> {
     if (error instanceof FirebaseError) {
       return error.code
     }
-    return `Unexpected Error: ${error}`
+    return `Unespected Error`
   }
 }

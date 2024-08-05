@@ -1,6 +1,11 @@
 import { check, validationResult } from 'express-validator'
 
 export const validateAddProduct = [
+  check('user_id')
+    .notEmpty()
+    .isString()
+    .withMessage('User ID is required and must be a string'),
+
   check('name')
     .notEmpty()
     .isString()
@@ -23,6 +28,7 @@ export const validateAddProduct = [
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() })
     }
+    console.log('req POST Product validated')
     next()
   },
 ]
@@ -30,6 +36,11 @@ export const validateAddProduct = [
 export const validateUpdateProduct = [
   check('id').isInt().withMessage('Id is required and must be a integer'),
 
+  check('user_id')
+    .notEmpty()
+    .isString()
+    .withMessage('User ID is required and must be a string'),
+
   check('name')
     .notEmpty()
     .isString()
@@ -52,6 +63,7 @@ export const validateUpdateProduct = [
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() })
     }
+    console.log('req PUT Product validated')
     next()
   },
 ]
@@ -63,6 +75,7 @@ export const validateDeleteProduct = [
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() })
     }
+    console.log('req DELETE Product validated')
     next()
   },
 ]
