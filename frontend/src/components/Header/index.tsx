@@ -6,6 +6,7 @@ import Logo from '../Logo/index.tsx'
 
 import arrowIcon from '../../../public/arrowIcon.png'
 import hamburguerIcon from '../../../public/hamburguerIcon.png'
+import { IconSearch } from '../Icons/index.tsx'
 
 const Header = () => {
   return (
@@ -21,7 +22,13 @@ const Header = () => {
           <img src={arrowIcon} alt="Arrow Icon" />
         </div>
         <div className={style.input_content}>
-          <Input placeholder={'Search...'} onChange={() => {}} value={''} />
+          <Input
+            placeholder={'Search...'}
+            onChange={() => {}}
+            value={''}
+            className={style.InputSearch}
+            icon={<IconSearch />}
+          />
         </div>
       </nav>
     </>
