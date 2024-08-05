@@ -2,13 +2,6 @@
 
 ## Getting Started
 
-### Prerequisites
-
-Ensure you have the following installed on your machine:
-
-- Node.js
-- npm
-
 ### Installation
 
 Clone the repository and install the dependencies:
