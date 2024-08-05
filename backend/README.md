@@ -9,7 +9,7 @@ cd cat-cafe/backend
 npm install
 
 # Start the development server
-npm run dev
+npm run start:dev
 ```
 
 ## File Structure
