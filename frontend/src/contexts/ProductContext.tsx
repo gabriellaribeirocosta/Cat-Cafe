@@ -1,10 +1,4 @@
-import {
-  createContext,
-  ReactNode,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 
 import ProductService from '../services/product/product.service'
 
@@ -12,14 +6,10 @@ import { ProductProps } from '../interfaces/Product'
 
 interface ProductContextType {
   products: ProductProps[] | null
-  setProducts: React.Dispatch<SetStateAction<ProductProps[]>>
-  addProduct: (product: ProductProps) => void
 }
 
 export const ProductContext = createContext<ProductContextType>({
   products: null,
-  addProduct: () => {},
-  setProducts: () => {},
 })
 
 interface ProductContextProviderProps {
@@ -51,8 +41,6 @@ export const ProductContextProvider = (props: ProductContextProviderProps) => {
     <ProductContext.Provider
       value={{
         products,
-        setProducts,
-        addProduct,
       }}
     >
       {children}

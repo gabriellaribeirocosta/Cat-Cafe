@@ -70,7 +70,7 @@ const Modal = ({ model, modelType, action, closeModal }: ModalProps) => {
   }, [model, modelType, action])
 
   const handleSubmit = async () => {
-    if(action === 'Create'){
+    if (action === 'Create') {
       if (modelType === 'Product') {
         const newModel = {
           name: modelName,
@@ -87,7 +87,7 @@ const Modal = ({ model, modelType, action, closeModal }: ModalProps) => {
           console.error(error)
         }
       }
-    } else if(action === 'Update' && model && model.id !== undefined){
+    } else if (action === 'Update' && model && model.id !== undefined) {
       const updatedModel: ProductProps = {
         id: model.id,
         name: modelName,
@@ -97,11 +97,11 @@ const Modal = ({ model, modelType, action, closeModal }: ModalProps) => {
       }
       try {
         if (updatedModel && model.id !== undefined) {
-          await ProductService.update(model.id, updatedModel);
+          await ProductService.update(model.id, updatedModel)
           closeModal()
         }
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
     }
   }

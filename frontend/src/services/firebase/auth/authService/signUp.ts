@@ -21,6 +21,6 @@ export async function signUp(
     if (error instanceof FirebaseError) {
       return error.code
     }
-    return `Unexpected Error: ${error}`
+    return `Unespected Error`
   }
 }

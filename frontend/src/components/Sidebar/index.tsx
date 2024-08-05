@@ -19,7 +19,6 @@ type UserInfoType = {
 
 const Sidebar = () => {
   const { user, loading } = useContext(AuthContext)
-  const { setProducts } = useContext(ProductContext)
 
   const [userInfo, setUserInfo] = useState<UserInfoType>({
     email: '',
@@ -35,6 +34,7 @@ const Sidebar = () => {
 
   const handleLogout = async () => {
     const response = await authService.logout()
+
     if (!response) {
       setProducts([])
     }

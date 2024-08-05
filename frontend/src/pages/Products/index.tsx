@@ -13,8 +13,12 @@ const Products = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false)
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false)
   const [updateOpen, setUpdateOpen] = useState<boolean>(false)
-  const [productToRemove, setProductToRemove] = useState<ProductProps | null>(null)
-  const [productToUpdate, setProductToUpdate] = useState<ProductProps | null>(null)
+  const [productToRemove, setProductToRemove] = useState<ProductProps | null>(
+    null,
+  )
+  const [productToUpdate, setProductToUpdate] = useState<ProductProps | null>(
+    null,
+  )
 
   const openModal = () => {
     setModalOpen(true)
@@ -44,11 +48,13 @@ const Products = () => {
   }
 
   const handleRemoveProduct = async (id: number) => {
-    try{
+    try {
       await ProductService.deleteProduct(id)
-      setProducts((productsAfter) => productsAfter?.filter((product) => product.id !== id || null))
+      setProducts((productsAfter) =>
+        productsAfter?.filter((product) => product.id !== id || null),
+      )
       closeConfirmModal()
-    }catch(error){
+    } catch (error) {
       console.error(error)
     }
   }
@@ -58,16 +64,32 @@ const Products = () => {
       <header className={style.ListHeader}>
         <h1>Products List</h1>
         <div className={style.button_container}>
-          <Button onClick={openModal}>ADD NEW PRODUCT</Button>
-          {modalOpen && <Modal modelType='Product' action='Create' closeModal={closeModal}/>}
+          <Button onClick={() => {}}>ADD NEW PRODUCT</Button>
         </div>
       </header>
 
       <section className={style.ListContent}>
-        <DetailsTable products={products} openConfirmModal={openConfirmModal} openUpdateModal={openUpdateModal}/>
+        <DetailsTable
+          products={products}
+          openConfirmModal={openConfirmModal}
+          openUpdateModal={openUpdateModal}
+        />
       </section>
-      {confirmOpen && productToRemove && <Confirm closeConfirm={closeConfirmModal} product={productToRemove} handleDeleteProduct={handleRemoveProduct}/>}
-      {updateOpen && productToUpdate && <Modal modelType={'Product'} model={productToUpdate} action={'Update'} closeModal={closeUpdateModal}/>}
+      {confirmOpen && productToRemove && (
+        <Confirm
+          closeConfirm={closeConfirmModal}
+          product={productToRemove}
+          handleDeleteProduct={handleRemoveProduct}
+        />
+      )}
+      {updateOpen && productToUpdate && (
+        <Modal
+          modelType={'Product'}
+          model={productToUpdate}
+          action={'Update'}
+          closeModal={closeUpdateModal}
+        />
+      )}
     </section>
   )
 }

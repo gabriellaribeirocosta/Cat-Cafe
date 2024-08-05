@@ -9,7 +9,6 @@ import logoFacebook from '../../../public/logoFacebook.png'
 import styles from './style.module.css'
 import { authService } from '../../services/firebase/auth/authService'
 import '../../styles/_reset.css'
-import user from '../../services/user/user.service'
 
 const SignIn = () => {
   const [email, setEmail] = useState<string>('')

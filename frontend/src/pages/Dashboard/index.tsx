@@ -5,9 +5,9 @@ import { ProductContext } from '../../contexts/ProductContext'
 import { useContext } from 'react'
 
 const Dashboard = () => {
-  const { products } = useContext(ProductContext);
-  const numberProducts = products ? products.length : 0;
-  
+  const { products } = useContext(ProductContext)
+  const numberProducts = products ? products.length : 0
+
   return (
     <section className={styles.Dashboard}>
       <div className={styles.CardsList}></div>

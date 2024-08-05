@@ -7,16 +7,20 @@ import { ProductProps } from '../../interfaces/Product.ts'
 interface ConfirmProps {
   closeConfirm: () => void
   product: ProductProps
-  handleDeleteProduct: (id:number) => void
+  handleDeleteProduct: (id: number) => void
 }
 
-const Confirm = ({ closeConfirm, product, handleDeleteProduct }:ConfirmProps) => {
+const Confirm = ({
+  closeConfirm,
+  product,
+  handleDeleteProduct,
+}: ConfirmProps) => {
   const handleCancel = () => {
     closeConfirm()
   }
 
   const handleDelete = () => {
-    if(product.id !== undefined){
+    if (product.id !== undefined) {
       handleDeleteProduct(product.id)
       closeConfirm()
     }

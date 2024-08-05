@@ -4,14 +4,9 @@ import React, { ChangeEvent, useState } from 'react'
 interface InputProps {
   type?: string
   placeholder?: string
-  value?: string
+  value: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   inputClass?: string
-  name?: string
-  id?: string
-  pattern?: string
-  title?: string
-  required?: boolean
   className?: string
   icon?: React.ReactNode | null
 }
@@ -33,7 +28,7 @@ const Input: React.FC<InputProps> = ({
   const [isBlurred, setIsBlurred] = useState(false)
 
   const handleBlur = () => {
-    if (value?.trim()) {
+    if (value.trim()) {
       setIsBlurred(true)
     }
   }
