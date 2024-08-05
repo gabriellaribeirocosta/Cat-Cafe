@@ -5,8 +5,8 @@ const create = async () => {
   return response.data
 }
 
-const user = {
+const userService = {
   create,
 }
 
-export default user
+export default userService

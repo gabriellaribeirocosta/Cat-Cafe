@@ -9,7 +9,7 @@ import logoFacebook from '../../../public/logoFacebook.png'
 import styles from './style.module.css'
 import { authService } from '../../services/firebase/auth/authService'
 import '../../styles/_reset.css'
-import user from '../../services/user/user.service'
+import userService from '../../services/user/user.service'
 
 const SignIn = () => {
   const [email, setEmail] = useState<string>('')
@@ -28,9 +28,8 @@ const SignIn = () => {
     if (!email || !password) return
     const response = await authService.signIn(email, password)
     if (typeof response === 'object' && response.uid) {
-      // usuario autenticado
+      await userService.create()
       setError(null)
-      //redirecionar
     } else if (typeof response === 'string') {
       setError('Your username or password may be incorrect.')
     }
@@ -42,7 +41,7 @@ const SignIn = () => {
     if (typeof response === 'object' && response.uid) {
       setEmail('')
       setPassword('')
-      await user.create()
+      await userService.create()
       setError(null)
       console.log(response.uid)
     } else if (typeof response === 'string') {
@@ -53,7 +52,7 @@ const SignIn = () => {
   const handleGoogleLoginClick = async () => {
     const response = await authService.googleAuth()
     if (typeof response === 'object' && response.uid) {
-      await user.create()
+      await userService.create()
       console.log(response.uid)
     } else if (typeof response === 'string') {
       console.error(response)
@@ -63,7 +62,7 @@ const SignIn = () => {
   const handleFacebookLoginClick = async () => {
     const response = await authService.facebookAuth()
     if (typeof response === 'object' && response.uid) {
-      await user.create()
+      await userService.create()
       console.log(response.uid)
     } else if (typeof response === 'string') {
       console.error(response)
