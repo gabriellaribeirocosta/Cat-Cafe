@@ -7,7 +7,7 @@ export const catController = {
       const cats = await Cat.findAll({ where: { user_id: user_id } })
       res.status(200).json(cats)
     } catch (error) {
-      res.status(400).send(error)
+      res.status(400).json({message: 'The cats cannot be listed'})
     }
   },
 
@@ -24,7 +24,7 @@ export const catController = {
       })
       res.status(201).json(cat)
     } catch (error) {
-      res.status(400).send(error)
+      res.status(400).json({message: 'The cat cannot be created'})
     }
   },
 
@@ -44,13 +44,13 @@ export const catController = {
       )
 
       if (updateCat == 0) {
-        return res.status(400).json('Cat not found!')
+        return res.status(400).json({message: 'The cat cannot be found'})
       }
 
       const cat = await Cat.findOne({ where: { id: id } })
       res.status(200).json(cat)
     } catch (error) {
-      res.status(400).send(error)
+      res.status(400).json({message: 'The cat cannot be updated'})
     }
   },
 
@@ -60,12 +60,12 @@ export const catController = {
       const cat = await Cat.destroy({ where: { id } })
 
       if (!cat) {
-        return res.status(400).json('Cat not found!')
+        return res.status(400).json({message: 'The cat cannot be found'})
       }
 
       res.status(200).json('Cat deleted with sucess!')
     } catch (error) {
-      res.status(400).send(error)
+      res.status(400).json({message: 'The cat cannot be deleted'})
     }
   },
 }

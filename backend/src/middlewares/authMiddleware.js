@@ -4,7 +4,7 @@ export const authMiddleware = async (req, res, next) => {
   const token = req.headers.authorization
 
   if (!token) {
-    return res.status(401).json('Token not provided')
+    return res.status(401).json({message: 'Token not provided'})
   }
 
   try {
@@ -12,6 +12,6 @@ export const authMiddleware = async (req, res, next) => {
     req.user = authUser
     next()
   } catch (error) {
-    return res.status(401).json('Unauthorized')
+    return res.status(401).json({message: 'Token unauthorized'})
   }
 }

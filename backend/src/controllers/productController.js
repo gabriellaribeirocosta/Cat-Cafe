@@ -7,7 +7,7 @@ export const productController = {
       const products = await Product.findAll({ where: { user_id: user_id } })
       res.status(200).json(products)
     } catch (error) {
-      res.status(400).send(error)
+      res.status(400).json({message: 'The products cannot be listed'})
     }
   },
 
@@ -24,7 +24,7 @@ export const productController = {
       })
       res.status(201).json(product)
     } catch (error) {
-      res.status(400).send(error)
+      res.status(400).json({message: 'The products cannot be created'})
     }
   },
 
@@ -44,13 +44,13 @@ export const productController = {
       )
 
       if (updateProduct == 0) {
-        return res.status(400).json('Cat not found!')
+        return res.status(400).json({message: 'The product cannot be found'})
       }
 
       const product = await Product.findOne({ where: { id: id } })
       res.status(200).json(product)
     } catch (error) {
-      res.status(400).send(error)
+      res.status(400).json({message: 'The products cannot be updated'})
     }
   },
 
@@ -60,12 +60,12 @@ export const productController = {
       const product = await Product.destroy({ where: { id } })
 
       if (!product) {
-        return res.status(400).json('Product not found!')
+        return res.status(400).json({message: 'The product cannot be found'})
       }
 
       res.status(200).json('Product deleted with sucess!')
     } catch (error) {
-      res.status(400).send(error)
+      res.status(400).json({message: 'The product cannot be deleted'})
     }
   },
 }
